@@ -1,0 +1,36 @@
+@import "reset";
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 1500px) {
+    width: 600px;
+  }
+}
+
+.header-wrapper {
+  display: flex;
+  padding: 8px;
+  position: fixed;
+  top: 0;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 600px) and (max-width: 1500px) {
+    width: 600px;
+  }
+  height: 50px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+}
