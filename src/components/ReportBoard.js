@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
-
+import StyledButton from "./StyledButton";
 const ReportBoard = () => {
   return (
     <Wrapper>
@@ -19,8 +19,8 @@ const ReportBoard = () => {
         </div>
       </ReportAccount>
       <ButtonWrapper>
-        <button>디지털성범죄 지원센터에 신고하기</button>
-        <button>트위터 계정 신고하기</button>
+        <StyledButton big>디지털성범죄 지원센터에 신고하기</StyledButton>
+        <StyledButton big>트위터 계정 신고하기</StyledButton>
       </ButtonWrapper>
     </Wrapper>
   );
@@ -49,7 +49,8 @@ const ReportAccount = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 50%;
-  width: inherit;
+  height: 30%;
+  width: 100%;
   justify-content: space-around;
+  align-items: center;
 `;
