@@ -1,8 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
-import StyledButton from "./StyledButton";
+import StyledButton from "../style/StyledButton";
 const ReportBoard = () => {
   return (
     <Wrapper>
@@ -29,13 +29,18 @@ const ReportBoard = () => {
 export default ReportBoard;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-  width: 100%;
-  border: 1px solid black;
+  ${({ theme }) => {
+    const { colors } = theme;
+    return css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 250px;
+      width: inherit%;
+      background-color: ${colors.bgColor};
+    `;
+  }}
 `;
 
 const ReportAccount = styled.div`

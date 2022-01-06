@@ -13,7 +13,6 @@ const HeaderWrapper = styled.div`
       color: ${colors.blue};
       background-color: ${colors.bgColor};
       width: 100%;
-      border: 1px solid black;
     `;
   }}
 `;

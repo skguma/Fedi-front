@@ -1,12 +1,19 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ResultCard from "./ResultCard";
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(40px, 100%));
-  grid-gap: 7px;
+  ${({ theme }) => {
+    const { colors } = theme;
+    return css`
+      display: grid;
+      grid-template-columns: repeat(2, minmax(40px, 100%));
+      grid-gap: 7px;
+      background-color: ${colors.bgColor};
+    `;
+  }}
 `;
+
 const ex = [
   {
     key: 0,

@@ -18,8 +18,8 @@ const fonts = {
     title: `'Merriweather', serif`
   },
   size: {
-    sm: "1.4rem",
-    base: "1.6rem",
+    sm: "0.8rem",
+    base: "1.1rem",
     lg: "2rem",
     xl: "2.5rem",
     title: "6rem"
@@ -34,7 +34,9 @@ const fonts = {
 const colors = {
   bgColor: "#F4F6FA",
   blue: "#3C63B0",
-  purple: "#8575FF"
+  purple: "#8575FF",
+  black: "#000000",
+  grey: "#A9A9A9"
 };
 
 const size = {

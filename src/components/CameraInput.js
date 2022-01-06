@@ -1,12 +1,13 @@
 import React, { useState, useRef } from "react";
 import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
-import StyledButton from "./StyledButton";
-import styled from "styled-components";
+import StyledButton from "../style/StyledButton";
+import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import previewImg from "../img/previewImg.jpg";
 
 const CameraInput = () => {
   // 파일 미리볼 url을 저장할 state
-  const [camInput, setCamInput] = useState();
+  const [camInput, setCamInput] = useState(previewImg);
   const imgInput = useRef();
   const navigate = useNavigate();
 
@@ -48,7 +49,7 @@ const CameraInput = () => {
       <img
         alt="upload"
         src={camInput}
-        style={{ background: "lightgrey", width: "45%", height: "200px" }}
+        style={{ background: "lightgrey", width: "45%", height: "180px" }}
       />
       {camInput && (
         <>
@@ -67,13 +68,20 @@ const CameraInput = () => {
 export default CameraInput;
 
 const CameraWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  height: 400px;
-  width: 100%;
-  border: 1px solid black;
+  ${({ theme }) => {
+    const { fonts, colors } = theme;
+    return css`
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      height: 350px;
+      width: 100%;
+      color: ${colors.blue};
+      background-color: ${colors.bgColor};
+    `;
+  }}
 `;
 
 const CameraButton = styled.button`
