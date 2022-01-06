@@ -1,4 +1,6 @@
 import React from "react";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./style/theme";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
@@ -8,14 +10,16 @@ import NetworkmapPage from "./pages/NetworkmapPage";
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/result" element={<ResultPage />} />
-          <Route path="/networkmap" element={<NetworkmapPage />} />
-          <Route path="/report" element={<ReportPage />} />
-        </Routes>
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/result" element={<ResultPage />} />
+            <Route path="/networkmap" element={<NetworkmapPage />} />
+            <Route path="/report" element={<ReportPage />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </>
   );
 }
