@@ -23,7 +23,7 @@ const CameraInput = () => {
   };
 
   const handleImgRemove = e => {
-    setCamInput();
+    setCamInput(previewImg);
   };
 
   const handleImgSubmit = e => {
@@ -51,7 +51,7 @@ const CameraInput = () => {
         src={camInput}
         style={{ background: "lightgrey", width: "45%", height: "180px" }}
       />
-      {camInput && (
+      {camInput !== previewImg && (
         <>
           <StyledButton big onClick={handleImgSubmit}>
             결과보기
