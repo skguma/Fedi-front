@@ -18,15 +18,16 @@ const PageMoveWrapper = styled.div`
   }}
 `;
 
-const PageMove = () => {
+const PageMove = ({ nextPage }) => {
+  const { destination, name } = nextPage;
   const navigate = useNavigate();
   return (
     <PageMoveWrapper>
       <StyledButton big onClick={() => navigate("/")}>
         재검색
       </StyledButton>
-      <StyledButton big onClick={() => navigate("/networkmap")}>
-        네트워크맵 보기
+      <StyledButton big onClick={() => navigate(`/${destination}`)}>
+        {name}
       </StyledButton>
     </PageMoveWrapper>
   );
