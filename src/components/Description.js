@@ -3,8 +3,8 @@ import styled, { css } from "styled-components";
 
 // 방법1: title과 subtitle을 props로 받기
 // 방법2: React.Children.toArray(children)으로 배열로 받아서 slice해서 사용하기
-const Description = ({ information }) => {
-  const [title, ...subtitles] = information;
+const Description = ({ informations }) => {
+  const [title, ...subtitles] = informations;
   console.log(title.note);
   console.log(subtitles);
 

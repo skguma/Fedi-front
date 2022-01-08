@@ -6,7 +6,7 @@ import Networkmap from "../components/Networkmap";
 import Footer from "../components/Footer";
 
 const NetworkmapPage = () => {
-  const information = [
+  const informations = [
     { id: "0", note: "트위터 네트워크 맵" },
     {
       id: "1",
@@ -21,7 +21,7 @@ const NetworkmapPage = () => {
   return (
     <div className="main-container">
       <Header />
-      <Description information={information} />
+      <Description informations={informations} />
       <Networkmap />
       <PageMove nextPage={nextPage} />
       <Footer />

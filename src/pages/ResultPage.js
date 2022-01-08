@@ -6,7 +6,7 @@ import ResultBoard from "../components/ResultBoard";
 import Footer from "../components/Footer";
 
 const ResultPage = () => {
-  const information = [
+  const informations = [
     { id: "0", note: "얼굴 인식 결과, 12개의 사진이 의심됩니다." },
     { id: "1", note: "원본 트윗 버튼을 클릭하면 원본 url로 연결됩니다." },
     { id: "2", note: "확인 후, 자신의 사진이 확실한 것만 클릭해주세요!" }
@@ -15,7 +15,7 @@ const ResultPage = () => {
   return (
     <div className="main-container">
       <Header />
-      <Description information={information} />
+      <Description informations={informations} />
       <ResultBoard />
       <PageMove nextPage={nextPage} />
       <Footer />
