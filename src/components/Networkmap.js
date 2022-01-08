@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+import data from "./data.json";
+import { ForceGraph } from "./NetworkGraph";
 
 const PageMoveWrapper = styled.div`
   display: flex;
@@ -8,11 +10,21 @@ const PageMoveWrapper = styled.div`
   justify-content: center;
   height: 300px;
   width: 100%;
-  border: 1px solid black;
 `;
 
 const Networkmap = () => {
-  return <PageMoveWrapper>Networkmap</PageMoveWrapper>;
+  const nodeHoverTooltip = React.useCallback(node => {
+    return `<div>${node.name}</div>`;
+  }, []);
+  return (
+    <PageMoveWrapper>
+      <ForceGraph
+        linksData={data.links}
+        nodesData={data.nodes}
+        nodeHoverTooltip={nodeHoverTooltip}
+      />
+    </PageMoveWrapper>
+  );
 };
 
 export default Networkmap;
