@@ -36,7 +36,8 @@ const colors = {
   blue: "#3C63B0",
   purple: "#8575FF",
   black: "#000000",
-  grey: "#A9A9A9"
+  grey: "#A9A9A9",
+  white: "#FFFFFF"
 };
 
 const size = {

@@ -11,29 +11,38 @@ const Wrapper = styled.div`
   height: 20px;
   ${({ theme, active }) => {
     const { fonts, colors } = theme;
-    return css`
-      background: ${colors.purple};
-      color: white;
-      height: ${props => props.height};
-      font-size: ${props => props.fontSize};
-      ${props =>
-        props.big &&
-        `
-  font-size: 2rem;
-  padding: 10px;
-`}
-      &:hover {
-        background: #8b00ff;
+    if (active) {
+      //활성상태
+      return css`
+        background: ${colors.purple};
         color: white;
-      }
-    `;
+        height: ${props => props.height};
+        font-size: ${props => props.fontSize};
+        &:hover {
+          background: #8b00ff;
+          color: white;
+        }
+      `;
+    } else {
+      // 비활성상태
+      return css`
+        background: ${colors.grey};
+        color: white;
+        height: ${props => props.height};
+        font-size: ${props => props.fontSize};
+        &:hover {
+          background: grey;
+          color: white;
+        }
+      `;
+    }
   }}
 `;
 // stateless면 여러개 컴포넌트 있어도 됨
 const StyledButton = ({ children, big, active, ...rest }) => {
   console.log("active:", active);
   return (
-    <Wrapper fontSize="10px" {...rest}>
+    <Wrapper fontSize="10px" {...rest} active={active}>
       {children}
     </Wrapper>
   );
