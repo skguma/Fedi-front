@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import styles from "./forceGraph.module.css";
+import styles from "../style/forceGraph.module.css";
 
 export function runForceGraph(
   container,

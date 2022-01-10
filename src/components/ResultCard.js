@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import thumbnail from "../img/001.jpeg";
+import "../style/style.css";
 
 function ResultCard({ accountId, accountName, ranking, similarity, tweetURL }) {
   const [resultInfo, setResultInfo] = useState([
@@ -9,10 +11,25 @@ function ResultCard({ accountId, accountName, ranking, similarity, tweetURL }) {
     similarity,
     tweetURL
   ]);
+  const [clicked, setClicked] = useState(false);
+  const handleClick = e => {
+    e.preventDefault();
+    setClicked(!clicked);
+  };
   return (
     <Wrapper>
       <Ranking>{ranking}</Ranking>
-      <Thumbnail />
+      <Thumbnail onClick={handleClick}>
+        <Img src={thumbnail} />
+        {clicked ? (
+          <>
+            <Overlay />
+            <CheckButton>✔</CheckButton>
+          </>
+        ) : (
+          ""
+        )}
+      </Thumbnail>
       <ResultInfo>
         <Similarity>{similarity}%</Similarity>
         <TweetURL>원본 트윗</TweetURL>
@@ -38,7 +55,37 @@ const Wrapper = styled.div`
 const Thumbnail = styled.div`
   height: 80%;
   width: inherit;
-  background-color: lightgrey;
+  position: relative;
+`;
+const CheckButton = styled.div`
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: absolute;
+  width: 15%;
+  top: 40%;
+  left: 40%;
+  border-radius: 50%;
+  background-color: #00aaff;
+  pointer: cursor;
+`;
+const Overlay = styled.div`
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #1196c1;
+  border: 2px solid blue;
+  opacity: 0.2;
+  pointer: cursor;
+`;
+const Img = styled.img`
+  height: 100%;
+  width: inherit;
+  cursor: pointer;
 `;
 
 const Ranking = styled.div`

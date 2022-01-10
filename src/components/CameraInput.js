@@ -9,6 +9,7 @@ const CameraInput = () => {
   // 파일 미리볼 url을 저장할 state
   const [camInput, setCamInput] = useState(previewImg);
   const imgInput = useRef();
+  const [active, setActive] = useState(true);
   const navigate = useNavigate();
 
   // 업로드 된 사진을 미리보기에 올리는 함수
@@ -53,10 +54,10 @@ const CameraInput = () => {
       />
       {camInput !== previewImg && (
         <>
-          <StyledButton big onClick={handleImgSubmit}>
+          <StyledButton big active={active} onClick={handleImgSubmit}>
             결과보기
           </StyledButton>
-          <StyledButton big onClick={handleImgRemove}>
+          <StyledButton big active={active} onClick={handleImgRemove}>
             삭제하기
           </StyledButton>
         </>

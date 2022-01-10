@@ -1,6 +1,6 @@
 import React from "react";
 import { runForceGraph } from "./forceGraphGenerator";
-import styles from "./forceGraph.module.css";
+import styles from "../style/forceGraph.module.css";
 
 export function ForceGraph({ linksData, nodesData, nodeHoverTooltip }) {
   const containerRef = React.useRef(null);
