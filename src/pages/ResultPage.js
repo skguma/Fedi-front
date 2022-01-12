@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import PageMove from "../components/PageMove";
 import Description from "../components/Description";
-import ResultBoard from "../components/ResultBoard";
+import ResultContainer from "../containers/ResultContainer";
 import Footer from "../components/Footer";
 
 const ResultPage = () => {
@@ -16,7 +16,7 @@ const ResultPage = () => {
     <div className="main-container">
       <Header />
       <Description informations={informations} />
-      <ResultBoard />
+      <ResultContainer />
       <PageMove nextPage={nextPage} />
       <Footer />
     </div>
