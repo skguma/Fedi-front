@@ -5,16 +5,17 @@ import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import previewImg from "../img/previewImg.jpg";
 
-const CameraInput = () => {
-  // 파일 미리볼 url을 저장할 state
+const CameraInput = ({ onUpload, onRemove }) => {
+  // 파일 미리보기를 위해 이미지 데이터(url)를 받을 state
   const [camInput, setCamInput] = useState(previewImg);
-  const imgInput = useRef();
   const [active, setActive] = useState(true);
-  const navigate = useNavigate();
 
-  // 업로드 된 사진을 미리보기에 올리는 함수
+  const navigate = useNavigate();
+  const imgInput = useRef();
+
+  //imgFile의 state가 바뀔때마다 store에 상태 dispatch하기
   const handleImgChange = e => {
-    // TODO: 로딩 스피너 적용하기
+    onUpload(e.target.files[0]);
     setCamInput(URL.createObjectURL(e.target.files[0]));
   };
 
@@ -25,10 +26,11 @@ const CameraInput = () => {
 
   const handleImgRemove = e => {
     setCamInput(previewImg);
+    onRemove();
   };
 
   const handleImgSubmit = e => {
-    //
+    console.log("camInput:", camInput);
 
     navigate("/result");
   };
