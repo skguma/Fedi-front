@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-import EmailBox from '../EmailBox';
+import EmailBox from './EmailBox';
 import { theme } from '../../style/theme';
 
 const ReportBoard = () => {
