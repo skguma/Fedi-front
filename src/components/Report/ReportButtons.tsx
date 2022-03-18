@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
-import StyledButton from "../style/StyledButton";
-import EmailBox from "./EmailBox";
+import React, { useState } from 'react';
+import styled, { css } from 'styled-components';
+import StyledButton from '../../style/StyledButton';
+import EmailBox from '../EmailBox';
 
 const ReportButtons = () => {
-  const [twitterText, setTwitterText] = useState("트위터 계정 신고하기");
-  const [centerText, setCenterText] =
-    useState("디지털성범죄 지원센터에 신고하기");
-  const FINISH_MESSAGE = "트위터 신고가 완료되었습니다.";
-  const FINISH = "finish";
-  const ONGOING = "ongoing";
-  const INITIAL_STATE = "";
+  const [twitterText, setTwitterText] = useState('트위터 계정 신고하기');
+  const [centerText, setCenterText] = useState('이메일로 신고정보 전송하기');
+  const FINISH_MESSAGE = '트위터 신고가 완료되었습니다.';
+  const FINISH = 'finish';
+  const ONGOING = 'ongoing';
+  const INITIAL_STATE = '';
 
   // 트위터 버튼 한번 클릭됐는지 값 관리
   const [active, setActive] = useState(true);
@@ -26,7 +25,7 @@ const ReportButtons = () => {
       setActive(false); // 비활성화 상태로 변경
       alert(FINISH_MESSAGE); // 트위터 신고가 완료되었다는 alert 메시지 출력
     } else {
-      alert("이미 신고가 완료되었습니다.");
+      alert('이미 신고가 완료되었습니다.');
     }
   };
   const changeState = () => {
@@ -39,7 +38,7 @@ const ReportButtons = () => {
       setCenterActive(true);
       setCenterReport(ONGOING); // 이메일박스 나오게 하기
     } else {
-      alert("이미 신고가 완료되었습니다.");
+      alert('이미 신고가 완료되었습니다.');
     }
   };
   return (
