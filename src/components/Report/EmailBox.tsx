@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { theme } from '../../style/theme';
@@ -13,10 +13,11 @@ const EmailBox = () => {
   const [isActive, setActive] = useState(false);
   const [values, setValues] = useState({ email: '' });
   const [authorization, setAuthorization] = useState();
-  const [headers, setHeaders] = useState(null);
+  const [reportButtonActive, setReportButtonActive] = useState(true);
+
   const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setValues({ [name]: value });
+    const { id, value } = e.target;
+    setValues({ [id]: value });
   };
 
   const postRPA = async () => {
@@ -88,36 +89,39 @@ const EmailBox = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (isActive) {
+    console.log(values.email);
+    if (reportButtonActive && isActive) {
       //postServer();
       alert('이메일로 발송되었습니다.');
-
-      postRPA();
+      setReportButtonActive(false);
+      // postRPA();
+    } else if (!isActive) {
+      alert('이메일을 형식에 맞게 입력해주세요.');
     } else {
-      alert('이메일에 @를 포함해서 입력해주세요.');
+      alert('이미 신고가 완료되었습니다.');
     }
   };
 
   const checkValid = () => {
     values.email.includes('@') ? setActive(true) : setActive(false);
+    console.log('Active: ', isActive);
   };
+
   return (
     <Wrapper>
       <form onSubmit={handleSubmit}>
         <InputWrapper>
-          <StyledInput
+          <TextField
+            helperText="24시간 이내 전송됩니다"
+            id="email"
+            color={isActive ? 'success' : 'error'}
+            label="email"
             value={values.email}
-            name="email"
-            placeholder="신고 접수 후, 평균 24시간 이내 발송됩니다"
             onKeyUp={checkValid}
             onChange={handleChange}
           />
-          <StyledButton
-            className={isActive ? 'activebtn' : 'unactivebtn'}
-            type="submit"
-          >
-            전송
+          <StyledButton isActive={isActive} type="submit">
+            신고 및 전송
           </StyledButton>
         </InputWrapper>
       </form>
@@ -127,36 +131,32 @@ const EmailBox = () => {
 
 export default EmailBox;
 
-const Wrapper = styled.div``;
-
-const StyledInput = styled.input`
-  width: 80%;
-  border: 0px;
-  border-radius: 20px;
-  height: 30px;
-  background-color: ${theme.color.lightgrey};
+const Wrapper = styled.div`
+  margin-top: 10px;
+  height: 300px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
-const StyledButton = styled.button`
-  border: 0px;
+
+const StyledButton = styled.button<{ isActive: boolean }>`
+  border: ${({ isActive }) => (isActive ? '1px solid grey' : '0px')};
   border-radius: 10px;
-  color: black;
+  color: ${({ isActive }) =>
+    isActive ? theme.color.black : theme.color.white};
+  background-color: ${({ isActive }) =>
+    isActive ? theme.color.white : '#D3D3D3'};
   height: 30px;
-  width: 40px;
-  background-color: #d9d5d4;
-  .activebtn {
-    background-color: #0095f6;
-  }
-  .unactivebtn {
-    background-color: #b2dffc;
-  }
+  margin-top: 15px;
+  width: 75%;
 `;
 
 const InputWrapper = styled.div`
   width: 310px;
-  height: 50px;
+  height: 100%;
   border-radius: 20px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  background-color: white;
 `;
