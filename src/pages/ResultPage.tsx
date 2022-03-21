@@ -1,9 +1,11 @@
 import React from 'react';
+import styled from 'styled-components';
 import Header from '../components/Header';
 import PageMove from '../components/PageMove';
 import Description from '../components/Description';
 import ResultContainer from '../containers/ResultContainer';
 import Footer from '../components/Footer';
+import { device, size, WrapperWithHeader } from '../style/theme';
 
 const ResultPage = () => {
   const informations: {
@@ -20,14 +22,24 @@ const ResultPage = () => {
     name: string;
   } = { destination: 'networkmap', name: '네트워크맵 보기' };
   return (
-    <div className="main-container">
+    <Wrapper>
       <Header />
       <Description informations={informations} />
       <ResultContainer />
       <PageMove nextPage={nextPage} />
       <Footer />
-    </div>
+    </Wrapper>
   );
 };
 
 export default ResultPage;
+
+const Wrapper = styled.div`
+  ${device.mobile} {
+    ${WrapperWithHeader};
+  }
+  ${device.tablet} {
+    ${WrapperWithHeader};
+    width: ${size.tablet};
+  }
+`;

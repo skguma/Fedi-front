@@ -1,18 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 import Header from '../components/Header';
 import Description from '../components/Description';
 import ReportBoard from '../components/Report/ReportBoard';
 import Footer from '../components/Footer';
+import { device, size, WrapperWithHeader } from '../style/theme';
 
 const ReportPage = () => {
   // report board에서 받은 click 여부 저장
   return (
-    <div className="main-container">
+    <Wrapper>
       <Header />
       <Description informations={informations} />
       <ReportBoard />
       <Footer />
-    </div>
+    </Wrapper>
   );
 };
 
@@ -23,3 +25,13 @@ const informations = [
 ];
 
 export default ReportPage;
+
+const Wrapper = styled.div`
+  ${device.mobile} {
+    ${WrapperWithHeader};
+  }
+  ${device.tablet} {
+    ${WrapperWithHeader};
+    width: ${size.tablet};
+  }
+`;

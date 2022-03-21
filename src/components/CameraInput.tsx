@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState, useRef } from 'react';
 import styled from 'styled-components';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import { useNavigate } from 'react-router-dom';
-import { theme } from '../style/theme';
+import { theme, device, flexCenter } from '../style/theme';
 import previewImg from '../assets/previewImg.jpg';
 
 type CameraInputProps = {
@@ -93,8 +93,9 @@ const CameraButton = styled.button`
 `;
 
 const Img = styled.img`
-  width: 50%;
+  width: 35%;
   height: 160px;
+
   cursor: pointer;
   box-shadow: 5px 5px 20px lightgrey;
   border-radius: 7px;
@@ -107,12 +108,11 @@ const StyledButton = styled.div`
   width: 35%;
   border-radius: 20px;
   cursor: pointer;
-  height: 23px;
+  height: 30px;
   border: 1px solid lightgrey;
   background: ${theme.color.white};
   color: black;
-  height: 20px;
-  font-size: 14px;
+  font-size: 10px;
   &:hover {
     background: #d0cfd1;
     color: black;

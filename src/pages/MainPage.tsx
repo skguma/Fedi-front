@@ -1,9 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 import Header from '../components/Header';
 import Description from '../components/Description';
 import ImageContainer from '../containers/ImageContainer';
 import Footer from '../components/Footer';
-
+import { device, size, WrapperWithHeader } from '../style/theme';
 const MainPage = () => {
   const informations: {
     id: string;
@@ -14,13 +15,23 @@ const MainPage = () => {
     { id: '2', note: '정면으로 얼굴을 비춰줄수록 정확도가 높아집니다.' },
   ];
   return (
-    <div className="main-container">
+    <Wrapper>
       <Header />
       <Description informations={informations} />
       <ImageContainer />
       <Footer />
-    </div>
+    </Wrapper>
   );
 };
 
 export default MainPage;
+
+const Wrapper = styled.div`
+  ${device.mobile} {
+    ${WrapperWithHeader};
+  }
+  ${device.tablet} {
+    ${WrapperWithHeader};
+    width: ${size.tablet};
+  }
+`;
