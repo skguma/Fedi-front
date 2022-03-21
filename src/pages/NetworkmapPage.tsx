@@ -3,36 +3,34 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import PageMove from '../components/PageMove';
 import Description from '../components/Description';
-import ResultContainer from '../containers/ResultContainer';
+import NetworkmapContainer from '../containers/NetworkmapContainer';
 import Footer from '../components/Footer';
 import { device, size, WrapperWithHeader } from '../style/theme';
-
-const ResultPage = () => {
-  const informations: {
-    id: string;
-    note: string;
-  }[] = [
-    { id: '0', note: '얼굴 인식 결과, 6개의 사진이 의심됩니다.' },
-    { id: '1', note: '원본 트윗 버튼을 클릭하면 원본 url로 연결됩니다.' },
-    { id: '2', note: '확인 후, 자신의 사진이 확실한 것만 클릭해주세요!' },
+const NetworkmapPage = () => {
+  const informations = [
+    { id: '0', note: '트위터 네트워크 맵' },
+    {
+      id: '1',
+      note: '원본 트윗에 좋아요를 누르거나 리트윗을 한 계정입니다.',
+    },
+    {
+      id: '2',
+      note: '원본 트윗 보기 버튼을 누르면 해당 트윗의 url로 이동합니다',
+    },
   ];
-
-  const nextPage: {
-    destination: string;
-    name: string;
-  } = { destination: 'networkmap', name: '네트워크맵 보기' };
+  const nextPage = { destination: 'report', name: '신고하기' };
   return (
     <Wrapper>
       <Header />
       <Description informations={informations} />
-      <ResultContainer />
+      <NetworkmapContainer />
       <PageMove nextPage={nextPage} />
       <Footer />
     </Wrapper>
   );
 };
 
-export default ResultPage;
+export default NetworkmapPage;
 
 const Wrapper = styled.div`
   ${device.mobile} {

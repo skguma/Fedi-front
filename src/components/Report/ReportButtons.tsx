@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import StyledButton from '../../style/StyledButton';
-import EmailBox from '../EmailBox';
+import EmailBox from './EmailBox';
 
 const ReportButtons = () => {
   const [twitterText, setTwitterText] = useState('트위터 계정 신고하기');
