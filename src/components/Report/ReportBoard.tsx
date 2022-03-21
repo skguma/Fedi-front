@@ -12,7 +12,7 @@ const ReportBoard = () => {
   return (
     <Wrapper>
       <ReportAccount>
-        <AvatarGroup total={10}>
+        <AvatarGroup className="avatar" total={10}>
           {ex &&
             ex.map((account, index) => (
               <Avatar
@@ -37,12 +37,16 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 250px;
+  height: 300px;
   width: inherit%;
   background-color: ${theme.color.bgColor};
 `;
 
 const ReportAccount = styled.div`
+  .avatar {
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
   height: 50%;
   width: inherit;
   display: flex;
