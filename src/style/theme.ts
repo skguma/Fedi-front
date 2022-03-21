@@ -12,7 +12,15 @@ export const flexCenter = css`
 export const WrapperWithHeader = css`
   width: 100%;
   height: 100vh;
+  padding-top: 50px;
+  box-sizing: border-box;
 `;
+
+export const WrapperWithHeaderFooter = css`
+  width: 100%;
+  height: 100vh;
+`;
+
 const margins = {
   sm: '.5rem',
   base: '1rem',
@@ -78,15 +86,14 @@ export const theme: DefaultTheme = {
   },
 };
 
-const size = {
+export const size = {
   mobile: '425px',
   tablet: '768px',
-  desktop: '1440px',
 };
 
-// 미디어 쿼리의 중복 코드를 줄이기 위해 정의된 변수
-const device = {
-  mobile: `@media only screen and (max-width: ${size.mobile})`,
-  tablet: `@media only screen and (max-width: ${size.tablet})`,
-  desktop: `@media only screen and (max-width: ${size.desktop})`,
+// 스마트폰 등 가장 작은 사이즈에서의 레이아웃을 기본으로 하고, 점차 확장되어가는 형태로 하기 위해
+// min-width 사용
+export const device = {
+  mobile: `@media only screen and (min-width: ${size.mobile})`, // 이 경우 가로 길이 100%, 계속 늘어나게
+  tablet: `@media only screen and (min-width: ${size.tablet})`, // 이 경우 가로 길이 768px
 };
