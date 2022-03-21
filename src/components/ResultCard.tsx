@@ -180,6 +180,7 @@ const ResultInfo = styled.div`
   height: 10%;
   display: flex;
   padding-top: 5px;
+  margin-bottom: 5px;
   align-items: center;
   justify-content: space-between;
 `;
