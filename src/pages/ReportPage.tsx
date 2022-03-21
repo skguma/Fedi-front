@@ -2,29 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Description from '../components/Description';
-import ImageContainer from '../containers/ImageContainer';
+import ReportBoard from '../components/Report/ReportBoard';
 import Footer from '../components/Footer';
 import { device, size, WrapperWithHeader } from '../style/theme';
-const MainPage = () => {
-  const informations: {
-    id: string;
-    note: string;
-  }[] = [
-    { id: '0', note: '트위터에 있는 내 사진을 찾아드려요' },
-    { id: '1', note: '카메라 버튼을 클릭하여 얼굴을 카메라에 비춰주세요!' },
-    { id: '2', note: '정면으로 얼굴을 비춰줄수록 정확도가 높아집니다.' },
-  ];
+
+const ReportPage = () => {
+  // report board에서 받은 click 여부 저장
   return (
     <Wrapper>
       <Header />
       <Description informations={informations} />
-      <ImageContainer />
+      <ReportBoard />
       <Footer />
     </Wrapper>
   );
 };
 
-export default MainPage;
+const informations = [
+  { id: '0', note: '2가지 신고 타입 중 원하는 타입을 선택해주세요' },
+  { id: '1', note: '허위 신고는 중범죄에 해당합니다' },
+  { id: '2', note: '내 사진이 확실한 것만 신고해주세요' },
+];
+
+export default ReportPage;
 
 const Wrapper = styled.div`
   ${device.mobile} {

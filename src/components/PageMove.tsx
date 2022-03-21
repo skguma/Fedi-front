@@ -28,14 +28,13 @@ const StyledButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35%;
+  width: 30%;
   border-radius: 20px;
   cursor: pointer;
-  height: 23px;
+  height: 30px;
   border: 1px solid lightgrey;
   background: ${theme.color.white};
   color: black;
-  height: 15px;
   font-size: 10px;
   &:hover {
     background: #d0cfd1;
@@ -44,6 +43,8 @@ const StyledButton = styled.div`
 `;
 
 const PageMoveWrapper = styled.div`
+  box-sizing: border-box;
+  padding: 0 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
