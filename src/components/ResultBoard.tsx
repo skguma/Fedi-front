@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import ResultCard from './ResultCard';
 import { theme } from '../style/theme';
+import { device, size, WrapperWithHeader } from '../style/theme';
 // import ResultContainer from "../containers/ResultContainer";
 
 type ResultBoardProps = {
@@ -42,7 +43,13 @@ export default ResultBoard;
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(40px, 100%));
+  ${device.mobile} {
+    justify-content: center;
+    grid-template-columns: repeat(2, 150px);
+  }
+  ${device.tablet} {
+    grid-template-columns: repeat(2, 200px);
+  }
   grid-gap: 7px;
   background-color: ${theme.color.bgColor};
 `;
