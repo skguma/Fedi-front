@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { theme } from '../../style/theme';
+import { useTranslation } from 'react-i18next';
 
 type jsonDataType = {
   grant_type: string;
@@ -10,6 +11,7 @@ type jsonDataType = {
   refresh_token: string;
 };
 const EmailBox = () => {
+  const { t } = useTranslation(['page']);
   const [isActive, setActive] = useState(false);
   const [values, setValues] = useState({ email: '' });
   const [authorization, setAuthorization] = useState();
@@ -92,13 +94,13 @@ const EmailBox = () => {
     console.log(values.email);
     if (reportButtonActive && isActive) {
       //postServer();
-      alert('이메일로 발송되었습니다.');
+      alert(t('page:ReportPage.emailAlert')); // t('page:ResultPage.title')
       setReportButtonActive(false);
       // postRPA();
     } else if (!isActive) {
-      alert('이메일을 형식에 맞게 입력해주세요.');
+      alert(t('page:ReportPage.validEmailCheck'));
     } else {
-      alert('이미 신고가 완료되었습니다.');
+      alert(t('page:ReportPage.alreadyReport'));
     }
   };
 
@@ -112,7 +114,7 @@ const EmailBox = () => {
       <form onSubmit={handleSubmit}>
         <InputWrapper>
           <TextField
-            helperText="24시간 이내 전송됩니다"
+            helperText={t('page:ReportPage.helperText')}
             id="email"
             color={isActive ? 'success' : 'error'}
             label="email"
@@ -121,7 +123,7 @@ const EmailBox = () => {
             onChange={handleChange}
           />
           <StyledButton isActive={isActive} type="submit">
-            신고 및 전송
+            {t('page:ReportPage.button')}
           </StyledButton>
         </InputWrapper>
       </form>
@@ -133,7 +135,8 @@ export default EmailBox;
 
 const Wrapper = styled.div`
   margin-top: 10px;
-  height: 300px;
+  height: 300x;
+  padding-bottom: 50px;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -147,6 +150,7 @@ const StyledButton = styled.button<{ isActive: boolean }>`
   background-color: ${({ isActive }) =>
     isActive ? theme.color.white : '#D3D3D3'};
   height: 30px;
+  cursor: pointer;
   margin-top: 15px;
   width: 75%;
 `;

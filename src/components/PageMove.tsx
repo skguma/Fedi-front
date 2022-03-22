@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '../style/theme';
+import { useTranslation } from 'react-i18next';
 
 type PageMoveProps = {
   nextPage: {
@@ -10,11 +11,14 @@ type PageMoveProps = {
   };
 };
 const PageMove = ({ nextPage }: PageMoveProps) => {
+  const { t } = useTranslation(['page']);
   const { destination, name } = nextPage;
   const navigate = useNavigate();
   return (
     <PageMoveWrapper>
-      <StyledButton onClick={() => navigate('/')}>재검색</StyledButton>
+      <StyledButton onClick={() => navigate('/')}>
+        {t('page:research')}
+      </StyledButton>
       <StyledButton onClick={() => navigate(`/${destination}`)}>
         {name}
       </StyledButton>
@@ -44,7 +48,7 @@ const StyledButton = styled.div`
 
 const PageMoveWrapper = styled.div`
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 70px 50px;
   display: flex;
   flex-direction: row;
   align-items: center;

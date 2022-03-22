@@ -4,16 +4,20 @@ import Header from '../components/Header';
 import Description from '../components/Description';
 import ImageContainer from '../containers/ImageContainer';
 import Footer from '../components/Footer';
+import { useTranslation } from 'react-i18next';
 import { device, size, WrapperWithHeader } from '../style/theme';
 const MainPage = () => {
+  const { t } = useTranslation(['page']);
+
   const informations: {
     id: string;
     note: string;
   }[] = [
-    { id: '0', note: '트위터에 있는 내 사진을 찾아드려요' },
-    { id: '1', note: '카메라 버튼을 클릭하여 얼굴을 카메라에 비춰주세요!' },
-    { id: '2', note: '정면으로 얼굴을 비춰줄수록 정확도가 높아집니다.' },
+    { id: '0', note: t('page:MainPage.title') },
+    { id: '1', note: t('page:MainPage.subtitle1') },
+    { id: '2', note: t('page:MainPage.subtitle2') },
   ];
+
   return (
     <Wrapper>
       <Header />

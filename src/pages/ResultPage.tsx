@@ -6,21 +6,23 @@ import Description from '../components/Description';
 import ResultContainer from '../containers/ResultContainer';
 import Footer from '../components/Footer';
 import { device, size, WrapperWithHeader } from '../style/theme';
+import { useTranslation } from 'react-i18next';
 
 const ResultPage = () => {
+  const { t } = useTranslation(['page']);
   const informations: {
     id: string;
     note: string;
   }[] = [
-    { id: '0', note: '얼굴 인식 결과, 6개의 사진이 의심됩니다.' },
-    { id: '1', note: '원본 트윗 버튼을 클릭하면 원본 url로 연결됩니다.' },
-    { id: '2', note: '확인 후, 자신의 사진이 확실한 것만 클릭해주세요!' },
+    { id: '0', note: t('page:ResultPage.title') },
+    { id: '1', note: t('page:ResultPage.subtitle1') },
+    { id: '2', note: t('page:ResultPage.subtitle2') },
   ];
 
   const nextPage: {
     destination: string;
     name: string;
-  } = { destination: 'networkmap', name: '네트워크맵 보기' };
+  } = { destination: 'networkmap', name: t('page:ResultPage.nextPage') };
   return (
     <Wrapper>
       <Header />
