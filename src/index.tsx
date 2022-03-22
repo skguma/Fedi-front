@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger'; // index.d.ts에 선언안되어 있어서 @types/redux-logger 설치함
 import ReduxThunk from 'redux-thunk';
+import './config';
 
 const store = createStore(
   rootReducer,
