@@ -1,0 +1,40 @@
+{
+    "MainPage": {
+        "title" : "Find your face on Twitter",
+        "subtitle1": "Click the camera button and show your face to the camera",
+        "subtitle2" : "The more you show your face to the front, the more accurate it is"
+    },
+    "Footer": {
+        "center": "digital crime offender support center",
+        "shortcut": "shortcut"
+    },
+    "MainButton":{
+        "result":"show result",
+        "delete": "delete photo"
+    },
+    "research" : "rescan",
+    "ResultPage": {
+        "title" : "As a result of face recognition, 6 photos are suspected",
+        "subtitle1": "Click the original tweet button to connect to the original url",
+        "subtitle2" : "After checking, just click on the ones that are sure of your photos!",
+        "nextPage": "show networkmap",
+        "tweet" : "tweet",
+        "suspend" : "suspend account"
+    },
+    "NetworkmapPage" : {
+        "title" : "Twitter networkmap",
+        "subtitle1": "It is the account where clicked like or retweet on the original tweet",
+        "subtitle2" : "You can report all the accounts by pressing the Report button",
+        "nextPage": "Report"
+    },
+    "ReportPage" : {
+        "title" : "Please enter your email and click the report button",
+        "subtitle1": "False reporting is a felony",
+        "subtitle2" : "Please report only the definite pictures",
+        "emailAlert" : "It has been sent by e-mail",
+        "validEmailCheck" : "Please enter your e-mail in a proper format",
+        "alreadyReport" : "You have already reported it",
+        "helperText": "It will be sent within 24 hours",
+        "button" : "Reporting and receiving evidence"
+    }
+}

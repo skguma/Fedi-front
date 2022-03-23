@@ -4,11 +4,13 @@ import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import { useNavigate } from 'react-router-dom';
 import { theme, device, flexCenter } from '../style/theme';
 import previewImg from '../assets/previewImg.jpg';
+import { useTranslation } from 'react-i18next';
 
 type CameraInputProps = {
   onUpload: () => void;
   onRemove: () => void;
 };
+
 const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
   // 파일 미리보기를 위해 이미지 데이터(url)를 받을 state
   const [camInput, setCamInput] = useState(previewImg);
@@ -18,6 +20,7 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
 
   const navigate = useNavigate();
   const imgInput = useRef(null); // useRef를 사용할 때는 generic으로 타입 정의함
+  const { t } = useTranslation(['page']);
 
   //imgFile의 state가 바뀔때마다 store에 상태 dispatch하기
   const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +59,12 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
       <Img alt="upload" src={camInput} />
       {camInput !== previewImg && (
         <>
-          <StyledButton onClick={handleImgSubmit}>결과보기</StyledButton>
-          <StyledButton onClick={handleImgRemove}>삭제하기</StyledButton>
+          <StyledButton onClick={handleImgSubmit}>
+            {t('page:MainButton.result')}
+          </StyledButton>
+          <StyledButton onClick={handleImgRemove}>
+            {t('page:MainButton.delete')}
+          </StyledButton>
         </>
       )}
     </CameraWrapper>
@@ -71,7 +78,8 @@ const CameraWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 350px;
+  height: 400px;
+  padding-bottom: 50px;
   width: 100%;
   color: ${theme.color.blue};
   background-color: ${theme.color.bgColor};
@@ -93,7 +101,7 @@ const CameraButton = styled.button`
 `;
 
 const Img = styled.img`
-  width: 35%;
+  width: 150px;
   height: 160px;
 
   cursor: pointer;

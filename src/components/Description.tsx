@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { theme } from '../style/theme';
+import { theme, flexCenter } from '../style/theme';
 
 type DescriptionType = {
   informations: {
@@ -16,11 +16,9 @@ const Description = ({ informations }: DescriptionType) => {
     <DescriptionWrapper>
       <h1>{title.note}</h1>
       <br />
-      <br />
       {subtitles.map((subtitle, index) => (
         <>
           <h2 key={index}>{subtitle.note}</h2>
-          &nbsp;
         </>
       ))}
     </DescriptionWrapper>
@@ -30,23 +28,21 @@ const Description = ({ informations }: DescriptionType) => {
 export default Description;
 
 const DescriptionWrapper = styled.div`
-  display: flex;
+  ${flexCenter}
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 170px;
-  width: inherit%;
-  padding: 13px;
+  padding-top: 30px;
+  height: 200px;
+  width: 100%;
   font-weight: bold;
   color: ${theme.color.blue};
   background-color: ${theme.color.bgColor};
   h1 {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 17px;
     color: ${theme.color.black};
   }
   h2 {
-    font-size: 10px;
+    font-size: 14px;
     color: ${theme.color.grey};
   }
 `;
