@@ -1,5 +1,6 @@
 import React, { useState, DetailedHTMLProps } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import '../style/style.css';
 import axios from 'axios';
 
@@ -29,11 +30,12 @@ function ResultCard({
 }: ResultCardProps) {
   const [clicked, setClicked] = useState(false);
   const [suspendId, setSuspendId] = useState();
+  const { t } = useTranslation(['page']);
   const handleClick = (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
 
-    // 스토어에 디스패치함
+    // 스토어에 디스패치
     clicked
       ? onUnselect(parseInt(tweetId, 10))
       : onSelect(parseInt(tweetId, 10));
@@ -54,7 +56,7 @@ function ResultCard({
   const handleSuspendAccount = (e) => {
     e.preventDefault();
     const tweetId = e.target.id;
-    console.log('정지', tweetId);
+    // console.log('정지', tweetId);
     // 스토어 정지 dispatch 하기
     onSuspend(tweetId);
     setSuspendId(tweetId);
@@ -67,7 +69,6 @@ function ResultCard({
   return (
     <Wrapper>
       <Ranking>{ranking + 1}</Ranking>
-      {/* 썸네일도 결국 div임 */}
       <Thumbnail id={tweetId} className="thumbnail" onClick={handleClick}>
         <div className="image" imageurl={imageUrl}>
           {clicked ? (
@@ -85,11 +86,11 @@ function ResultCard({
       <ResultInfo>
         <Similarity>{similarity}%</Similarity>
         <TweetURL onClick={() => window.open(`${tweetUrl}`, '_blank')}>
-          원본 트윗
+          {t('page:ResultPage.tweet')}
         </TweetURL>
       </ResultInfo>
       <SuspendAccountReportButton id={tweetId} onClick={handleSuspendAccount}>
-        정지계정신고
+        {t('page:ResultPage.suspend')}
       </SuspendAccountReportButton>
     </Wrapper>
   );
@@ -210,6 +211,8 @@ const TweetURL = styled.div`
   background-color: white;
   border: 1px solid lightgrey;
   display: flex;
+  color: ${(props) => props.theme.color.blue};
+  font-weight: bold;
   justify-content: center;
   align-items: center;
   border-radius: 5px;

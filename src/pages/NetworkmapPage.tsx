@@ -5,20 +5,26 @@ import PageMove from '../components/PageMove';
 import Description from '../components/Description';
 import NetworkmapContainer from '../containers/NetworkmapContainer';
 import Footer from '../components/Footer';
+import { useTranslation } from 'react-i18next';
 import { device, size, WrapperWithHeader } from '../style/theme';
+
 const NetworkmapPage = () => {
+  const { t } = useTranslation(['page']);
   const informations = [
-    { id: '0', note: '트위터 네트워크 맵' },
+    { id: '0', note: t('page:NetworkmapPage.title') },
     {
       id: '1',
-      note: '원본 트윗에 좋아요를 누르거나 리트윗을 한 계정입니다.',
+      note: t('page:NetworkmapPage.subtitle1'),
     },
     {
       id: '2',
-      note: '원본 트윗 보기 버튼을 누르면 해당 트윗의 url로 이동합니다',
+      note: t('page:NetworkmapPage.subtitle2'),
     },
   ];
-  const nextPage = { destination: 'report', name: '신고하기' };
+  const nextPage = {
+    destination: 'report',
+    name: t('page:NetworkmapPage.nextPage'),
+  };
   return (
     <Wrapper>
       <Header />
