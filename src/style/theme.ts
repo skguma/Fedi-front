@@ -87,7 +87,7 @@ export const theme: DefaultTheme = {
 };
 
 export const size = {
-  mobile: '425px',
+  mobile: '300px',
   tablet: '768px',
 };
 
