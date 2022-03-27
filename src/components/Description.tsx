@@ -16,10 +16,8 @@ const Description = ({ informations }: DescriptionType) => {
     <DescriptionWrapper>
       <h1>{title.note}</h1>
       <br />
-      {subtitles.map((subtitle, index) => (
-        <>
-          <h2 key={index}>{subtitle.note}</h2>
-        </>
+      {subtitles.map((subtitle, id) => (
+        <h2 key={id}>{subtitle.note}</h2>
       ))}
     </DescriptionWrapper>
   );
@@ -37,11 +35,13 @@ const DescriptionWrapper = styled.div`
   color: ${theme.color.blue};
   background-color: ${theme.color.bgColor};
   h1 {
+    text-align: center;
     font-weight: bold;
     font-size: 17px;
     color: ${theme.color.black};
   }
   h2 {
+    text-align: center;
     font-size: 14px;
     color: ${theme.color.grey};
   }
