@@ -1,10 +1,11 @@
-import styled, { css } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import EmailBox from './EmailBox';
 import { theme } from '../../style/theme';
 
-const ReportBoard = () => {
+const ReportBoard = ({ tweetUrl }: string[]) => {
   const ex = [
     { accountName: '28', tweetUrl: 'http://www.' },
     { accountName: 'ㅏㅏ', tweetUrl: 'http://www.' },
@@ -25,7 +26,7 @@ const ReportBoard = () => {
             ))}
         </AvatarGroup>
       </ReportAccount>
-      <EmailBox />
+      <EmailBox tweetUrl={tweetUrl} />
     </Wrapper>
   );
 };

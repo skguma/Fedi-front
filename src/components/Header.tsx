@@ -21,11 +21,11 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <HeaderWrapper>
-      <div></div> <div></div>
+      <div className="blank" />
       <div className="logo" onClick={() => navigate('/')}>
         FEDI
       </div>
-      <Translate>
+      <Translate className="translate">
         <div>Translate</div>
         <Switch onClick={onChangeLang} defaultChecked />
       </Translate>
@@ -53,11 +53,18 @@ const HeaderWrapper = styled.div`
   cursor: pointer;
   z-index: 100;
   background-color: ${theme.color.white};
+  .blank {
+    width: 30%;
+  }
   .logo {
     ${flexCenter}
+    width: 30%;
     font-size: 20px;
     font-weight: bold;
     color: ${theme.color.blue};
+  }
+  .translate {
+    width: 30%;
   }
 `;
 

@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Description from '../components/Description';
-import ReportBoard from '../components/Report/ReportBoard';
 import Footer from '../components/Footer';
+import ReportContainer from '../containers/ReportContainer';
 import { device, size, WrapperWithHeader } from '../style/theme';
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +19,7 @@ const ReportPage = () => {
     <Wrapper>
       <Header />
       <Description informations={informations} />
-      <ReportBoard />
+      <ReportContainer />
       <Footer />
     </Wrapper>
   );

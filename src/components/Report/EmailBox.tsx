@@ -10,7 +10,7 @@ type jsonDataType = {
   client_id: string;
   refresh_token: string;
 };
-const EmailBox = () => {
+const EmailBox = ({ tweetUrl }: string[]) => {
   const { t } = useTranslation(['page']);
   const [isActive, setActive] = useState(false);
   const [values, setValues] = useState({ email: '' });
@@ -23,7 +23,7 @@ const EmailBox = () => {
   };
 
   const postRPA = async () => {
-    // 1. Authorization
+    // TODO: 1. Authorization
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -79,22 +79,24 @@ const EmailBox = () => {
   };
 
   const postServer = async () => {
+    const data = {
+      recipient: values.email,
+      tweetUrls: tweetUrl,
+    };
     await axios
-      .post(
-        // TODO: RPA 주소로 연결
-        'http://15.165.149.176:8080/mail',
-        { recipient: values.email } // TODO: tweetUrl 추가하기
-      )
+      .post('http://15.165.149.176:8080/mail', data, {
+        headers: { 'Content-Type': 'application/json' },
+      })
       .then((res) => {
         console.log(res.data);
       });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values.email);
     if (reportButtonActive && isActive) {
-      //postServer();
-      alert(t('page:ReportPage.emailAlert')); // t('page:ResultPage.title')
+      // TODO: RPA와 서버 동시에 요청하기
+      postServer();
+      alert(t('page:ReportPage.emailAlert'));
       setReportButtonActive(false);
       // postRPA();
     } else if (!isActive) {
@@ -105,8 +107,9 @@ const EmailBox = () => {
   };
 
   const checkValid = () => {
-    values.email.includes('@') ? setActive(true) : setActive(false);
-    console.log('Active: ', isActive);
+    const regExp =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    values.email.match(regExp) != null ? setActive(true) : setActive(false);
   };
 
   return (
@@ -131,7 +134,7 @@ const EmailBox = () => {
   );
 };
 
-export default EmailBox;
+export default React.memo(EmailBox);
 
 const Wrapper = styled.div`
   margin-top: 10px;
