@@ -1,60 +1,72 @@
-// 결과 페이지 데이터 컨테이너
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ResultBoard from '../components/ResultBoard';
 import { select, unselect } from '../modules/reports';
 import { suspends } from '../modules/suspends';
-import { fetchData } from '../modules/resultsData';
-import { getResults } from '../modules/results';
-import { imageAPI } from '../api/api';
 import axios from 'axios';
 
 function ResultContainer() {
   const dispatch = useDispatch();
-  const [stopButtonClicked, setStopButtonClicked] = useState(false);
   const [data, setData] = useState();
 
-  const { file } = useSelector((state) => ({ file: state.images.file }));
-
-  // 정지 계정 신고하면 API 재호출하는 로직
-  const { suspendAccount } = useSelector((state) => ({
-    suspendAccount: state.suspender.suspendTweetId,
+  const { file } = useSelector((state) => ({
+    file: state.images.file,
   }));
 
-  // console.log("스토어에서 가져온 값", suspendAccount);
+  const { suspendTweetId } = useSelector((state) => ({
+    suspendTweetId: state.suspender.suspendTweetId,
+  }));
 
-  let completed = false;
+  console.log('스토어에서 가져온 정지 계정 트윗 id 값', suspendTweetId);
 
+  let RESULT_FETCH_COMPLETE_FLAG = false;
+  let SUSPEND_FETCH_COMPLETE_FLAG = false;
   const formData = new FormData();
   formData.append('file', file);
 
-  // http://15.165.149.176:8080/results
   useEffect(() => {
     async function post() {
       const result = await axios({
         method: 'post',
-        url: 'https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/results',
+        url: 'http://15.165.149.176:8080/results',
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      if (!completed) {
+      if (!RESULT_FETCH_COMPLETE_FLAG) {
         setData(result.data.data);
         console.log('api data', result.data.data);
       }
     }
-    post();
-    return () => {
-      completed = true;
-    };
-    // stop button 상태가 변할 때 마다 useEffect 실행
-  }, []);
+    // postman: https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io
+    async function suspend() {
+      const tweetId = suspendTweetId;
+      const result = await axios({
+        method: 'patch',
+        url: `http://15.165.149.176:8080/tweets/${tweetId}/suspend`,
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (!SUSPEND_FETCH_COMPLETE_FLAG) {
+        setData(result.data.data);
+        console.log('suspend api data', result.data.data);
+      }
+    }
+    if (suspendTweetId === null) {
+      post();
+      return () => {
+        RESULT_FETCH_COMPLETE_FLAG = true;
+      };
+    } else {
+      suspend();
+      return () => {
+        SUSPEND_FETCH_COMPLETE_FLAG = true;
+      };
+    }
+  }, [suspendTweetId]);
 
-  const fetchData = (data) => dispatch(fetchData(data));
-  // fetchData(data);
-
-  const onSelect = (tweetId) => dispatch(select(tweetId));
-  const onUnselect = (tweetId) => dispatch(unselect(tweetId));
-  const onSuspend = (tweetId) => dispatch(suspends(tweetId));
+  const onSelect = (tweetId: number) => dispatch(select(tweetId));
+  const onUnselect = (tweetId: number) => dispatch(unselect(tweetId));
+  const onSuspend = (suspendTweetId: number) =>
+    dispatch(suspends(suspendTweetId));
 
   return (
     <ResultBoard
@@ -64,8 +76,6 @@ function ResultContainer() {
       onUnselect={onUnselect}
     />
   );
-
-  // 각 액션을 dispatch하는 함수
 }
 
 export default ResultContainer;
