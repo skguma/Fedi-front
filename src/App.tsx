@@ -6,16 +6,15 @@ import MainPage from './pages/MainPage';
 import ResultPage from './pages/ResultPage';
 import ReportPage from './pages/ReportPage';
 import NetworkmapPage from './pages/NetworkmapPage';
-import PostListContainer from './containers/PostListContainer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {/* 전역 스타일 적용 */}
         <Router>
+          <ScrollToTop />
           <Routes>
-            <Route path="/post" element={<PostListContainer />} />
             <Route path="/" element={<MainPage />} />
             <Route path="/result" element={<ResultPage />} />
             <Route path="/networkmap" element={<NetworkmapPage />} />
