@@ -60,7 +60,7 @@ function ResultCard({
         <ClearIcon id={tweetId} className="delete-icon" />
       </Fab>
       <Thumbnail id={tweetId} className="thumbnail" onClick={handleClick}>
-        <div className="image" id={tweetId} imageurl={imageUrl}>
+        <Img className="image" id={tweetId}>
           {clicked ? (
             <>
               <Overlay id={tweetId} />
@@ -70,11 +70,11 @@ function ResultCard({
             ''
           )}
           <div className="eye-box"></div>
-        </div>
+        </Img>
       </Thumbnail>
 
       <ResultInfo>
-        <Similarity>{similarity}%</Similarity>
+        <Similarity>{similarity.toFixed(2)}%</Similarity>
         <TweetURL onClick={() => window.open(`${tweetUrl}`, '_blank')}>
           {t('page:ResultPage.tweet')}
         </TweetURL>
@@ -118,26 +118,28 @@ const Thumbnail = styled.div`
   justify-content: center;
   position: relative;
   margin-bottom: 10px;
-  .image {
-    background-image: url('https://www.newsinside.kr/news/photo/202006/1077848_762939_4052.jpg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100%;
-    width: 70%;
-    cursor: pointer;
-    box-shadow: 5px 5px 20px grey;
-    position: relative;
-    border-radius: 7px;
-    .eye-box {
-      margin-top: 20px;
-      position: absolute;
-      width: 100%;
-      height: 10%;
-      background-color: black;
-    }
+`;
+
+const Img = styled.div<{ imageUrl: string }>`
+  background-image: url('https://www.newsinside.kr/news/photo/202006/1077848_762939_4052.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 70%;
+  cursor: pointer;
+  box-shadow: 5px 5px 20px grey;
+  position: relative;
+  border-radius: 7px;
+  .eye-box {
+    margin-top: 20px;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    background-color: black;
   }
 `;
+
 const CheckButton = styled.div`
   display: flex;
   justify-content: center;
@@ -162,13 +164,6 @@ const Overlay = styled.div`
   border: 2px solid blue;
   opacity: 0.2;
   pointer: cursor;
-`;
-const Img = styled.div`
-  height: 90%;
-  width: inherit;
-  cursor: pointer;
-  box-shadow: 5px 5px 20px grey;
-  border-radius: 7px;
 `;
 
 const Ranking = styled.div`

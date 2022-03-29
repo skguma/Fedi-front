@@ -17,6 +17,7 @@ type CameraInputProps = {
 const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
   const [imageSrc, setImageSrc] = useState<string | null>(previewImg);
   const [webcamOpen, setWebcamOpen] = useState<boolean>(false);
+  const [file, setFile] = useState();
   const [isCapture, setIsCapture] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
   };
 
   const handleImgSubmit = () => {
-    onUpload(imageSrc);
+    onUpload(file);
     navigate('/result');
   };
   const videoConstraints = {
@@ -42,6 +43,19 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
     height: 720,
     facingMode: 'user',
   };
+
+  const dataURLtoFile = (dataurl: string, fileName: string) => {
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let len = bstr.length;
+    const u8arr = new Uint8Array(len);
+    while (len--) {
+      u8arr[len] = bstr.charCodeAt(len);
+    }
+    return new File([u8arr], fileName, { type: mime });
+  };
+
   return (
     <CameraWrapper>
       {webcamOpen === false && isCapture === false ? (
@@ -67,6 +81,8 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
                 fontSize={'large'}
                 onClick={() => {
                   const imageSrc = getScreenshot();
+                  const file = dataURLtoFile(imageSrc, 'test-image.jpeg');
+                  setFile(file);
                   setImageSrc(imageSrc);
                   setIsCapture(true);
                   setWebcamOpen(false);
