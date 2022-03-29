@@ -40,6 +40,7 @@ const Contact = styled.div`
   padding-bottom: 20px;
   padding-top: 20px;
   border-top: 1px solid white;
+  box-sizing: border-box;
   margin: 20px;
 `;
 
