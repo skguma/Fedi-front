@@ -17,12 +17,11 @@ function ResultContainer() {
     suspendTweetId: state.suspender.suspendTweetId,
   }));
 
-  console.log('스토어에서 가져온 정지 계정 트윗 id 값', suspendTweetId);
-
   let RESULT_FETCH_COMPLETE_FLAG = false;
   let SUSPEND_FETCH_COMPLETE_FLAG = false;
   const formData = new FormData();
   formData.append('file', file);
+  console.log('file', file);
 
   useEffect(() => {
     async function post() {
@@ -34,10 +33,8 @@ function ResultContainer() {
       });
       if (!RESULT_FETCH_COMPLETE_FLAG) {
         setData(result.data.data);
-        console.log('api data', result.data.data);
       }
     }
-    // postman: https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io
     async function suspend() {
       const tweetId = suspendTweetId;
       const result = await axios({

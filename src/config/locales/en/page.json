@@ -10,7 +10,7 @@
     },
     "MainButton":{
         "result":"show result",
-        "delete": "delete photo"
+        "delete": "taking a photo again"
     },
     "research" : "rescan",
     "ResultPage": {

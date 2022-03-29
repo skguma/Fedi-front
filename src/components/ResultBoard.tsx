@@ -1,12 +1,11 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import ResultCard from './ResultCard';
 import { theme } from '../style/theme';
-import { device, size, WrapperWithHeader } from '../style/theme';
-// import ResultContainer from "../containers/ResultContainer";
+import { device } from '../style/theme';
 
 type ResultBoardProps = {
-  results: () => void; // TODO: results[]로 수정하기
+  results: any;
   onSelect: () => void;
   onUnselect: () => void;
   onSuspend: () => void;

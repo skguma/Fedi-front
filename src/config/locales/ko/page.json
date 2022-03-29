@@ -10,7 +10,7 @@
     },
     "MainButton":{
         "result":"결과보기",
-        "delete": "삭제하기"
+        "delete": "사진 다시 촬영하기"
     },
     "ResultPage": {
         "title" : "얼굴 인식 결과, 다음 사진들이 의심됩니다",

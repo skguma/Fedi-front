@@ -6,7 +6,7 @@ export const suspends = (suspendTweetId: number) => ({
 });
 
 type suspendState = {
-  suspendTweetId: number;
+  suspendTweetId: number | null;
 };
 const initialState: suspendState = {
   suspendTweetId: null,

@@ -1,13 +1,7 @@
-import React, {
-  useState,
-  DetailedHTMLProps,
-  HTMLAttributes,
-  HTMLDivElement,
-} from 'react';
+import React, { useState, DetailedHTMLProps, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import '../style/style.css';
-import axios from 'axios';
 import Fab from '@mui/material/Fab';
 import ClearIcon from '@mui/icons-material/Clear';
 
@@ -47,17 +41,12 @@ function ResultCard({
     setClicked(!clicked);
   };
 
-  // TODO: e 타입 뭘로 지정하지?
   const handleSuspendAccount = (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
-    console.log('suspendtweetId', tweetId);
-    // 스토어 정지 트윗 id dispatch 하기
     onSuspend(tweetId);
-    // patchSuspendAccount(tweetId);
   };
 
-  console.log(imageUrl);
   return (
     <Wrapper>
       <Ranking>{ranking + 1}</Ranking>

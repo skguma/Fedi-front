@@ -1,8 +1,5 @@
-// 공유 스타일 작성, ex. box-sizing
-
 import styled, { DefaultTheme, css } from 'styled-components';
 
-// 자주 사용하는 css를 변수로 선언함
 export const flexCenter = css`
   display: flex;
   align-items: center;
@@ -91,9 +88,7 @@ export const size = {
   tablet: '768px',
 };
 
-// 스마트폰 등 가장 작은 사이즈에서의 레이아웃을 기본으로 하고, 점차 확장되어가는 형태로 하기 위해
-// min-width 사용
 export const device = {
-  mobile: `@media only screen and (min-width: ${size.mobile})`, // 이 경우 가로 길이 100%, 계속 늘어나게
-  tablet: `@media only screen and (min-width: ${size.tablet})`, // 이 경우 가로 길이 768px
+  mobile: `@media only screen and (min-width: ${size.mobile})`,
+  tablet: `@media only screen and (min-width: ${size.tablet})`,
 };
