@@ -1,20 +1,25 @@
-const SUSPEND = 'report/SUSPEND'; // 정지 계정 신고하는 액션
+const SUSPEND = 'report/SUSPEND';
 
-// 액션 생성함수
-export const suspends = (tweetId) => ({
+export const suspends = (suspendTweetId: number) => ({
   type: SUSPEND,
-  tweetId,
+  suspendTweetId,
 });
 
-const initialState = {
-  suspendTweetId: null, // 사용자가 선택한 사진들의 tweetID (네트워크맵 전송용),
+type suspendState = {
+  suspendTweetId: number | null;
+};
+const initialState: suspendState = {
+  suspendTweetId: null,
 };
 
-// reducer 선언
-export default function suspender(state = initialState, action) {
+type suspendAction = ReturnType<typeof suspends>;
+export default function suspender(
+  state: suspendState = initialState,
+  action: suspendAction
+) {
   switch (action.type) {
     case SUSPEND:
-      return { suspendTweetId: action.tweetId };
+      return { suspendTweetId: action.suspendTweetId };
 
     default:
       return state;

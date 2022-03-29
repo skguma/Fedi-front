@@ -10,13 +10,13 @@
     },
     "MainButton":{
         "result":"show result",
-        "delete": "delete photo"
+        "delete": "taking a photo again"
     },
     "research" : "rescan",
     "ResultPage": {
-        "title" : "As a result of face recognition, 6 photos are suspected",
-        "subtitle1": "Click the original tweet button to connect to the original url",
-        "subtitle2" : "After checking, just click on the ones that are sure of your photos!",
+        "title" : "As a result of face recognition, these photos are suspected",
+        "subtitle1": "Please check the original tweet and select only your photos.",
+        "subtitle2" : "If the original tweet is deleted or is a suspended account, please click Delete button",
         "nextPage": "show networkmap",
         "tweet" : "tweet",
         "suspend" : "suspend account"

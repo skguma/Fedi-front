@@ -1,8 +1,9 @@
-import React, { useState, DetailedHTMLProps } from 'react';
+import React, { useState, DetailedHTMLProps, HTMLAttributes } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import '../style/style.css';
-import axios from 'axios';
+import Fab from '@mui/material/Fab';
+import ClearIcon from '@mui/icons-material/Clear';
 
 type ResultCardProps = {
   ranking: number;
@@ -11,9 +12,9 @@ type ResultCardProps = {
   imageUrl: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   tweetId: string;
   eyes: number[];
-  onSelect: (tweetId: string) => void;
-  onUnselect: (tweetId: string) => void;
-  onSuspend: (tweetId: string) => void;
+  onSelect: (tweetId: number) => any;
+  onUnselect: (tweetId: number) => any;
+  onSuspend: (suspendTweetId: number) => any;
 };
 
 // tweetID는 key값임
@@ -29,48 +30,37 @@ function ResultCard({
   onSuspend,
 }: ResultCardProps) {
   const [clicked, setClicked] = useState(false);
-  const [suspendId, setSuspendId] = useState();
   const { t } = useTranslation(['page']);
+
   const handleClick = (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
-
-    // 스토어에 디스패치
     clicked
       ? onUnselect(parseInt(tweetId, 10))
       : onSelect(parseInt(tweetId, 10));
-
     setClicked(!clicked);
   };
 
-  // 새로고침 되는지 확인해야 함
-  // GET: http://15.165.149.176:8080/results/view
-  const patchSuspendAccount = async (tweetId: number) => {
-    await axios
-      .get('http://15.165.149.176:8080/results/view', { tweetId: tweetId })
-      .then((res) => {
-        console.log(res.data);
-      });
-  };
-
-  const handleSuspendAccount = (e) => {
+  const handleSuspendAccount = (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
-    // console.log('정지', tweetId);
-    // 스토어 정지 dispatch 하기
     onSuspend(tweetId);
-    setSuspendId(tweetId);
-    patchSuspendAccount(tweetId);
-
-    // patch api call 하기 나중에 network 통신 conatiner에서 관리하기
   };
 
-  console.log(imageUrl);
   return (
     <Wrapper>
       <Ranking>{ranking + 1}</Ranking>
+      <Fab
+        id={tweetId}
+        className="fab"
+        color="secondary"
+        aria-label="add"
+        onClick={handleSuspendAccount}
+      >
+        <ClearIcon id={tweetId} className="delete-icon" />
+      </Fab>
       <Thumbnail id={tweetId} className="thumbnail" onClick={handleClick}>
-        <div className="image" imageurl={imageUrl}>
+        <div className="image" id={tweetId} imageurl={imageUrl}>
           {clicked ? (
             <>
               <Overlay id={tweetId} />
@@ -89,9 +79,6 @@ function ResultCard({
           {t('page:ResultPage.tweet')}
         </TweetURL>
       </ResultInfo>
-      <SuspendAccountReportButton id={tweetId} onClick={handleSuspendAccount}>
-        {t('page:ResultPage.suspend')}
-      </SuspendAccountReportButton>
     </Wrapper>
   );
 }
@@ -103,11 +90,25 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: inherit;
   pointer: cursor;
+  position: relative;
   gap: 0.1rem;
   height: 200px;
   font-size: 3px;
   padding: 5px;
   margin: 10px;
+  .fab {
+    position: absolute;
+    width: 33px;
+    height: 10px;
+    background-color: #f05650;
+    right: 10px;
+    top: 5px;
+    z-index: 50;
+    .delete-icon {
+      width: 15px;
+      height: 15px;
+    }
+  }
 `;
 
 const Thumbnail = styled.div`
@@ -138,13 +139,13 @@ const Thumbnail = styled.div`
   }
 `;
 const CheckButton = styled.div`
-  height: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   position: absolute;
-  width: 15%;
+  width: 17%;
+  height: 15%;
   top: 40%;
   left: 40%;
   border-radius: 50%;
@@ -193,29 +194,28 @@ const Similarity = styled.div`
   border-radius: 5px;
   height: 100%;
   width: 50%;
+  font-size: 13px;
+  padding: 2px;
   background-color: white;
   border: 1px solid lightgrey;
 `;
 
-const SuspendAccountReportButton = styled.div`
-  background-color: white;
-  border: 1px solid lightgrey;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  width: 100%;
-  height: 10%;
-`;
 const TweetURL = styled.div`
-  background-color: white;
+  background-color: #00acee;
   border: 1px solid lightgrey;
+  padding: 2px;
   display: flex;
-  color: ${(props) => props.theme.color.blue};
+  color: white;
   font-weight: bold;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  &:hover {
+    background-color: ${(props) => props.theme.color.blue};
+    color: white;
+  }
   width: 40%;
   height: 100%;
 `;

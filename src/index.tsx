@@ -7,17 +7,16 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import logger from 'redux-logger'; // index.d.ts에 선언안되어 있어서 @types/redux-logger 설치함
+import logger from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import './config';
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(ReduxThunk, logger))
-); // 미들웨어 적용
+);
 const persistor = persistStore(store);
 
-console.log(store.getState()); // 스토어의 상태 확인
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

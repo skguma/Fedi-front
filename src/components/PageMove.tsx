@@ -32,14 +32,14 @@ const StyledButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 35%;
   border-radius: 20px;
   cursor: pointer;
   height: 30px;
   border: 1px solid lightgrey;
   background: ${theme.color.white};
   color: black;
-  font-size: 10px;
+  font-size: 13px;
   &:hover {
     background: #d0cfd1;
     color: black;

@@ -1,7 +1,6 @@
 const UPLOAD = 'image/UPLOAD' as const;
 const REMOVE = 'image/DELETE' as const;
 
-// 액션 생성함수
 export const upload = (file: any) => ({
   type: UPLOAD,
   file,
@@ -14,7 +13,7 @@ type imageState = {
   file: any;
 };
 const initialState: imageState = {
-  file: null, // 사용자가 업로드한 사진 (1장)
+  file: null,
 };
 
 type ImageAction = ReturnType<typeof upload> | ReturnType<typeof remove>;

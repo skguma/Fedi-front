@@ -1,10 +1,13 @@
-import React, { ChangeEvent, useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 import { useNavigate } from 'react-router-dom';
-import { theme, device, flexCenter } from '../style/theme';
-import previewImg from '../assets/previewImg.jpg';
+import { theme } from '../style/theme';
 import { useTranslation } from 'react-i18next';
+import Webcam from 'react-webcam';
+import CameraIcon from '@mui/icons-material/Camera';
+import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import FaceIcon from '@mui/icons-material/Face';
+import previewImg from '../assets/previewImg.jpg';
 
 type CameraInputProps = {
   onUpload: () => void;
@@ -12,53 +15,70 @@ type CameraInputProps = {
 };
 
 const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
-  // 파일 미리보기를 위해 이미지 데이터(url)를 받을 state
-  const [camInput, setCamInput] = useState(previewImg);
-
-  // TODO: useState 사용할 때 상태가 null일수도 있고 아닐 수도 있을 때 Generic 활용하기
-  // useSate<Information | null> (null)
-
+  const [imageSrc, setImageSrc] = useState<string | null>(previewImg);
+  const [webcamOpen, setWebcamOpen] = useState<boolean>(false);
+  const [isCapture, setIsCapture] = useState<boolean>(false);
   const navigate = useNavigate();
-  const imgInput = useRef(null); // useRef를 사용할 때는 generic으로 타입 정의함
+
   const { t } = useTranslation(['page']);
 
-  //imgFile의 state가 바뀔때마다 store에 상태 dispatch하기
-  const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onUpload(e.target.files[0]);
-    setCamInput(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const handleImgInputBtnClick = (e: { preventDefault: () => void }) => {
+  const handleWebcamOpen = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    imgInput.current.click();
+    setWebcamOpen(true);
   };
 
   const handleImgRemove = () => {
-    setCamInput(previewImg);
     onRemove();
+    setIsCapture(false);
+    setImageSrc(previewImg);
   };
 
   const handleImgSubmit = () => {
-    console.log('camInput:', camInput);
+    onUpload(imageSrc);
     navigate('/result');
+  };
+  const videoConstraints = {
+    width: 1280, // 1280 x 720
+    height: 720,
+    facingMode: 'user',
   };
   return (
     <CameraWrapper>
-      <CameraButton onClick={handleImgInputBtnClick}>
-        <AddAPhotoOutlinedIcon color={'success'} fontSize={'large'} />
-      </CameraButton>
-      <input
-        ref={imgInput}
-        type="file"
-        name="image"
-        accept="image/*"
-        capture="user" // 유저 쪽 카메라로 사진을 찍도록 함
-        style={{ display: 'none' }}
-        onChange={handleImgChange}
-      />
-      <Img alt="upload" src={camInput} />
-      {camInput !== previewImg && (
+      {webcamOpen === false && isCapture === false ? (
         <>
+          <CameraButton onClick={handleWebcamOpen}>
+            <AddAPhotoOutlinedIcon color={'success'} fontSize={'large'} />
+          </CameraButton>
+          <FaceIcon className="face-icon" fontSize={'large'} />
+        </>
+      ) : null}
+      {webcamOpen && isCapture === false ? (
+        <Webcam
+          width={1280}
+          height={720}
+          className="web-cam"
+          audio={false}
+          screenshotFormat="image/jpeg"
+          videoConstraints={videoConstraints}
+        >
+          {({ getScreenshot }) => (
+            <CameraButton>
+              <CameraIcon
+                fontSize={'large'}
+                onClick={() => {
+                  const imageSrc = getScreenshot();
+                  setImageSrc(imageSrc);
+                  setIsCapture(true);
+                  setWebcamOpen(false);
+                }}
+              />
+            </CameraButton>
+          )}
+        </Webcam>
+      ) : null}
+      {webcamOpen === false && isCapture === true ? (
+        <>
+          <Img alt="upload" src={imageSrc} />
           <StyledButton onClick={handleImgSubmit}>
             {t('page:MainButton.result')}
           </StyledButton>
@@ -66,7 +86,7 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
             {t('page:MainButton.delete')}
           </StyledButton>
         </>
-      )}
+      ) : null}
     </CameraWrapper>
   );
 };
@@ -83,6 +103,17 @@ const CameraWrapper = styled.div`
   width: 100%;
   color: ${theme.color.blue};
   background-color: ${theme.color.bgColor};
+  .web-cam {
+    border: 0;
+    outline: 0;
+    background-color: black;
+    border: 1px solid lightgrey;
+    height: 50%;
+    width: 50%;
+    box-shadow: 5px 5px 20px lightgrey;
+    border-radius: 7px;
+    cursor: pointer;
+  }
 `;
 
 const CameraButton = styled.button`
@@ -101,9 +132,8 @@ const CameraButton = styled.button`
 `;
 
 const Img = styled.img`
-  width: 150px;
-  height: 160px;
-
+  width: 50%;
+  height: 50%;
   cursor: pointer;
   box-shadow: 5px 5px 20px lightgrey;
   border-radius: 7px;
@@ -113,14 +143,14 @@ const StyledButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35%;
+  width: 40%;
   border-radius: 20px;
   cursor: pointer;
   height: 30px;
   border: 1px solid lightgrey;
   background: ${theme.color.white};
   color: black;
-  font-size: 10px;
+  font-size: 13px;
   &:hover {
     background: #d0cfd1;
     color: black;
