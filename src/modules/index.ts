@@ -2,8 +2,6 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storageSession from 'redux-persist/lib/storage/session';
 import reports from './reports';
-import posts from './posts';
-import results from './results';
 import images from './images';
 import suspender from './suspends';
 import mailSender from './mailSender';
@@ -17,8 +15,6 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   reports,
-  posts,
-  results,
   images,
   mailSender,
   suspender,
