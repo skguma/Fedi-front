@@ -27,19 +27,21 @@ function ResultContainer() {
     async function post() {
       const result = await axios({
         method: 'post',
-        url: 'http://15.165.149.176:8080/results',
+        url: 'https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/results',
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       if (!RESULT_FETCH_COMPLETE_FLAG) {
         setData(result.data.data);
+        console.log('api result data: ', result.data.data);
       }
     }
+    // http://15.165.149.176:8080/tweets/${tweetId}/suspend
     async function suspend() {
       const tweetId = suspendTweetId;
       const result = await axios({
-        method: 'patch',
-        url: `http://15.165.149.176:8080/tweets/${tweetId}/suspend`,
+        method: 'post',
+        url: `https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/results/view`,
         headers: { 'Content-Type': 'application/json' },
       });
       if (!SUSPEND_FETCH_COMPLETE_FLAG) {
