@@ -28,8 +28,6 @@ export function runForceGraph(
   };
 
   const getRadius = (d) => {
-    // 1이면 중심노드니까 반지름 15,
-    // 아니면 반지름 12
     return d.value === 1 ? 18 : 12;
   };
 

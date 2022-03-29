@@ -10,6 +10,7 @@ type jsonDataType = {
   client_id: string;
   refresh_token: string;
 };
+
 const EmailBox = ({ tweetUrl }: string[]) => {
   const { t } = useTranslation(['page']);
   const [isActive, setActive] = useState(false);
@@ -38,7 +39,7 @@ const EmailBox = ({ tweetUrl }: string[]) => {
     };
     const stringJsonData = JSON.stringify(jsonData);
 
-    // 최초 한번에 한해 필요하고 다음부터는 24시간마자 갱신
+    // 최초 한 번에 한해 필요함 이후 24시간마다 갱신
     await axios.post('/oauth/token', stringJsonData, config).then((res) => {
       console.log(res.data.access_token);
       setAuthorization(res.data.access_token); // access_token 얻기
@@ -61,7 +62,6 @@ const EmailBox = ({ tweetUrl }: string[]) => {
         ReleaseKey: '29779fb0-cfe8-4dd7-9a24-bec908fff5ff',
         Strategy: 'ModernJobsCount',
         JobsCount: 1,
-        // TODO: 이메일용으로 바꾸기
         InputArguments:
           '{"InputArguments":[{"tweetUrl":"https://twitter.com/chimdaewiyasu/status/1497145210891304966"},{"tweetUrl":"https://twitter.com/asdasd19632707/status/1497139763899695106"}]}',
       },
@@ -91,7 +91,7 @@ const EmailBox = ({ tweetUrl }: string[]) => {
         console.log(res.data);
       });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEventHandler<HTMLFormElement>) => {
     e.preventDefault();
     if (reportButtonActive && isActive) {
       // TODO: RPA와 서버 동시에 요청하기
