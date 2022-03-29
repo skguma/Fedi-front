@@ -1,5 +1,18 @@
 # Fedi-front
 
+## How to get started
+```
+$ git clone https://github.com/skguma/Fedi-image-scraper.git
+
+$ cd Fedi-front
+
+$ npm install
+
+$ npm start
+
+```
+
+
 ## 기능
 - 카메라로 얼굴 사진 촬영 후 사진 업로드 미리보기
 - 유사도 분석 결과보기, 신고할 사진 선택
