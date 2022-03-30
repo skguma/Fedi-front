@@ -21,13 +21,12 @@ function ResultContainer() {
   let SUSPEND_FETCH_COMPLETE_FLAG = false;
   const formData = new FormData();
   formData.append('file', file);
-  console.log('file', file);
 
   useEffect(() => {
     async function post() {
       const result = await axios({
         method: 'post',
-        url: 'https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/results',
+        url: 'http://15.165.149.176:8080/results',
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
       });
@@ -41,7 +40,7 @@ function ResultContainer() {
       const tweetId = suspendTweetId;
       const result = await axios({
         method: 'post',
-        url: `https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/results/view`,
+        url: `http://15.165.149.176:8080/tweets/${tweetId}/suspend`,
         headers: { 'Content-Type': 'application/json' },
       });
       if (!SUSPEND_FETCH_COMPLETE_FLAG) {
