@@ -26,7 +26,6 @@ function NetworkmapContainer() {
 
   useEffect(() => {
     console.log('tweetId', tweetId.tweetId);
-    const test = [1, 14];
 
     const param = tweetId.tweetId.join(',');
     console.log(param);
