@@ -1,4 +1,9 @@
-import React, { useState, DetailedHTMLProps, HTMLAttributes } from 'react';
+import React, {
+  useEffect,
+  useState,
+  DetailedHTMLProps,
+  HTMLAttributes,
+} from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import '../style/style.css';
@@ -11,13 +16,13 @@ type ResultCardProps = {
   tweetUrl: string;
   imageUrl: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
   tweetId: string;
-  eyes: number[];
+  eyes: string;
+  size: string;
   onSelect: (tweetId: number) => any;
   onUnselect: (tweetId: number) => any;
   onSuspend: (suspendTweetId: number) => any;
 };
 
-// tweetID는 key값임
 function ResultCard({
   ranking,
   similarity,
@@ -25,13 +30,15 @@ function ResultCard({
   imageUrl,
   tweetId,
   eyes,
+  size,
   onSelect,
   onUnselect,
   onSuspend,
 }: ResultCardProps) {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState<boolean>(false);
+  const [isSuspend, setIsSuspend] = useState<boolean>(false);
   const { t } = useTranslation(['page']);
-
+  const [eyesLocation, setEyesLocation] = useState<number>(0);
   const handleClick = (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
@@ -45,6 +52,17 @@ function ResultCard({
     e.preventDefault();
     const tweetId = e.target.id;
     onSuspend(tweetId);
+    setIsSuspend(true); // 정지 상태면 이미지 위에 회색 창 보여지게하기
+    alert(t('page:ResultPage.suspendAccountReport'));
+  };
+  useEffect(() => modifyEyesLocation(), []);
+  const modifyEyesLocation = () => {
+    let height = size.split(' ');
+    const eyesSplit = eyes.split(' ');
+    const eyesLocation = Math.floor(parseInt(eyesSplit[1]));
+    height = parseInt(height[1]);
+    const ratio = Math.floor((eyesLocation / height) * 100);
+    setEyesLocation(2 * ratio - 30);
   };
 
   return (
@@ -60,17 +78,16 @@ function ResultCard({
         <ClearIcon id={tweetId} className="delete-icon" />
       </Fab>
       <Thumbnail id={tweetId} className="thumbnail" onClick={handleClick}>
-        <Img className="image" id={tweetId}>
-          {clicked ? (
-            <>
-              <Overlay id={tweetId} />
-              <CheckButton id={tweetId}>✔</CheckButton>
-            </>
-          ) : (
-            ''
-          )}
-          <div className="eye-box"></div>
-        </Img>
+        <Img className="image" id={tweetId} src={imageUrl} />
+        {clicked ? (
+          <>
+            <Overlay id={tweetId} />
+            <CheckButton id={tweetId}>✔</CheckButton>
+          </>
+        ) : (
+          ''
+        )}
+        <EyeBox margin={eyesLocation} />
       </Thumbnail>
 
       <ResultInfo>
@@ -120,8 +137,28 @@ const Thumbnail = styled.div`
   margin-bottom: 10px;
 `;
 
-const Img = styled.div<{ imageUrl: string }>`
-  background-image: url('https://www.newsinside.kr/news/photo/202006/1077848_762939_4052.jpg');
+const Img = styled.img`
+  height: 100%;
+  width: 70%;
+  cursor: pointer;
+  box-shadow: 5px 5px 20px grey;
+  position: relative;
+  border-radius: 7px;
+`;
+const Overlay = styled.div`
+  height: 100%;
+  position: absolute;
+  width: 70%;
+  top: 0;
+  left: 15%;
+  background-color: #1196c1;
+  border: 2px solid blue;
+  opacity: 0.2;
+  pointer: cursor;
+`;
+/*
+const Img = styled.div`
+  background-image: url('${(props) => props.backgroundImage}');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -131,13 +168,15 @@ const Img = styled.div<{ imageUrl: string }>`
   box-shadow: 5px 5px 20px grey;
   position: relative;
   border-radius: 7px;
-  .eye-box {
-    margin-top: 20px;
-    position: absolute;
-    width: 100%;
-    height: 10%;
-    background-color: black;
-  }
+`;
+*/
+
+const EyeBox = styled.div`
+  margin-top: ${(props) => props.margin}px;
+  position: absolute;
+  width: 70%;
+  height: 15%;
+  background-color: black;
 `;
 
 const CheckButton = styled.div`
@@ -152,17 +191,6 @@ const CheckButton = styled.div`
   left: 40%;
   border-radius: 50%;
   background-color: #00aaff;
-  pointer: cursor;
-`;
-const Overlay = styled.div`
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: #1196c1;
-  border: 2px solid blue;
-  opacity: 0.2;
   pointer: cursor;
 `;
 

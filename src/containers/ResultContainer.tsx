@@ -31,21 +31,19 @@ function ResultContainer() {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       if (!RESULT_FETCH_COMPLETE_FLAG) {
-        setData(result.data.data);
-        console.log('api result data: ', result.data.data);
+        console.log('api result data: ', result.data);
+        setData(result.data);
       }
     }
-    // http://15.165.149.176:8080/tweets/${tweetId}/suspend
     async function suspend() {
       const tweetId = suspendTweetId;
       const result = await axios({
-        method: 'post',
+        method: 'patch',
         url: `http://15.165.149.176:8080/tweets/${tweetId}/suspend`,
         headers: { 'Content-Type': 'application/json' },
       });
       if (!SUSPEND_FETCH_COMPLETE_FLAG) {
-        setData(result.data.data);
-        console.log('suspend api data', result.data.data);
+        console.log('suspend api data', result.data);
       }
     }
     if (suspendTweetId === null) {

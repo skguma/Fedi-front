@@ -27,6 +27,7 @@ const ResultBoard = ({
             ranking={index}
             imageUrl={results.imageUrl}
             eyes={results.eyes}
+            size={results.size}
             similarity={results.similarity}
             tweetUrl={results.tweetUrl}
             onSelect={onSelect}
