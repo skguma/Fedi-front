@@ -97,7 +97,7 @@ function ResultCard({
           )}
           <EyeBox margin={eyesLocation} />
         </Thumbnail>
-      )}
+  
 
       <ResultInfo>
         <Similarity>{similarity.toFixed(2)}%</Similarity>
