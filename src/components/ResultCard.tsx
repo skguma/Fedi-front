@@ -43,6 +43,7 @@ function ResultCard({
   const handleClick = (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
+    console.log('tweetId', tweetId);
     clicked
       ? onUnselect(parseInt(tweetId, 10))
       : onSelect(parseInt(tweetId, 10));
@@ -53,7 +54,7 @@ function ResultCard({
     e.preventDefault();
     const tweetId = e.target.id;
     onSuspend(tweetId);
-    setIsSuspend(true); 
+    setIsSuspend(true);
     alert(t('page:ResultPage.suspendAccountReport'));
 
     const config = { headers: { 'Content-Type': 'application/json' } };
@@ -85,19 +86,18 @@ function ResultCard({
         <ClearIcon id={tweetId} className="delete-icon" />
       </Fab>
 
-        <Thumbnail id={tweetId} suspend={isSuspend} onClick={handleClick}>
-          <Img className="image" id={tweetId} src={imageUrl} />
-          {clicked ? (
-            <>
-              <Overlay id={tweetId} />
-              <CheckButton id={tweetId}>✔</CheckButton>
-            </>
-          ) : (
-            ''
-          )}
-          <EyeBox margin={eyesLocation} />
-        </Thumbnail>
-  
+      <Thumbnail id={tweetId} suspend={isSuspend} onClick={handleClick}>
+        <Img className="image" id={tweetId} src={imageUrl} />
+        <EyeBox margin={eyesLocation} id={tweetId} />
+        {clicked ? (
+          <>
+            <Overlay id={tweetId} />
+            <CheckButton id={tweetId}>✔</CheckButton>
+          </>
+        ) : (
+          ''
+        )}
+      </Thumbnail>
 
       <ResultInfo>
         <Similarity>{similarity.toFixed(2)}%</Similarity>
@@ -156,8 +156,8 @@ const Thumbnail = styled.div`
   justify-content: center;
   position: relative;
   margin-bottom: 10px;
-  background-color: ${props => (props.suspend? "black": null)}
-  z-index:  ${props => (props.suspend? "100": 0)}
+  background-color: ${(props) => (props.suspend ? 'black' : null)}
+  z-index:  ${(props) => (props.suspend ? '100' : 0)}
 `;
 
 const Img = styled.img`
