@@ -2,9 +2,10 @@ const SELECT = 'report/SELECT' as const;
 const UNSELECT = 'report/UNSELECT' as const;
 const SUSPEND = 'report/SUSPEND' as const;
 
-export const select = (tweetId: number) => ({
+export const select = (tweetId: number, tweetUrl: string) => ({
   type: SELECT,
   tweetId,
+  tweetUrl,
 });
 export const unselect = (tweetId: number) => ({
   type: UNSELECT,
@@ -17,10 +18,13 @@ export const suspend = (tweetId: number) => ({
 });
 
 type reportState = {
-  tweetId: number[];
+  tweet: {
+    tweetId: number;
+    tweetUrl: string;
+  }[];
 };
 const initialState: reportState = {
-  tweetId: [],
+  tweet: [], // 빈 배열
 };
 
 type ReportAction =
@@ -34,11 +38,16 @@ export default function reports(
 ) {
   switch (action.type) {
     case SELECT:
-      return { tweetId: [...state.tweetId, action.tweetId] };
+      return {
+        tweet: [
+          ...state.tweet, // 나머지 트윗 그대로
+          { tweetId: action.tweetId, tweetUrl: action.tweetUrl },
+        ],
+      };
 
     case UNSELECT:
       return {
-        tweetId: state.tweetId.filter((state) => state !== action.tweetId),
+        tweet: state.tweet.filter((state) => state.tweetId !== action.tweetId),
       };
     default:
       return state;
