@@ -11,7 +11,7 @@ type jsonDataType = {
   refresh_token: string;
 };
 
-const EmailBox = ({ tweetUrl }: string[]) => {
+const EmailBox = ({ tweetUrl, onClear }) => {
   const { t } = useTranslation(['page']);
   const [isActive, setActive] = useState(false);
   const [values, setValues] = useState({ email: '' });
@@ -104,6 +104,7 @@ const EmailBox = ({ tweetUrl }: string[]) => {
     } else {
       alert(t('page:ReportPage.alreadyReport'));
     }
+    onClear();
   };
 
   const checkValid = () => {

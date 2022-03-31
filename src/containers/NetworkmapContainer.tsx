@@ -25,8 +25,11 @@ function NetworkmapContainer() {
   const tweetId = useSelector((state) => ({ tweetId: state.reports.tweetId }));
 
   useEffect(() => {
-    const test = [1, 2, 3];
-    const param = test.join(',');
+    console.log('tweetId', tweetId.tweetId);
+    const test = [1, 14];
+
+    const param = tweetId.tweetId.join(',');
+    console.log(param);
 
     async function get() {
       const config = {

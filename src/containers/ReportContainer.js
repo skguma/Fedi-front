@@ -1,14 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ReportBoard from '../components/Report/ReportBoard';
+import { clear } from '../modules/mailSender';
 
 function ReportContainer() {
+  const dispatch = useDispatch();
   const { tweetUrl } = useSelector((state) => ({
     tweetUrl: state.mailSender.tweetUrl,
   }));
+  const onClear = () => dispatch(clear());
 
-  // TODO: 계정 리스트 두개랑 전체 사이즈 내려보내기
-  return <ReportBoard tweetUrl={tweetUrl} />;
+  return <ReportBoard tweetUrl={tweetUrl} onClear={onClear} />;
 }
 
 export default ReportContainer;
