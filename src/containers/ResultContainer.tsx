@@ -13,17 +13,13 @@ function ResultContainer() {
     file: state.images.file,
   }));
 
-  const { suspendTweetId } = useSelector((state) => ({
-    suspendTweetId: state.suspender.suspendTweetId,
-  }));
-
   let RESULT_FETCH_COMPLETE_FLAG = false;
-  let SUSPEND_FETCH_COMPLETE_FLAG = false;
-  const formData = new FormData();
-  formData.append('file', file);
-
+  // http://15.165.149.176:8080/results
+  // https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/results
   useEffect(() => {
     async function post() {
+      const formData = new FormData();
+      formData.append('file', file);
       const result = await axios({
         method: 'post',
         url: 'http://15.165.149.176:8080/results',
@@ -35,29 +31,11 @@ function ResultContainer() {
         setData(result.data);
       }
     }
-    async function suspend() {
-      const tweetId = suspendTweetId;
-      const result = await axios({
-        method: 'patch',
-        url: `http://15.165.149.176:8080/tweets/${tweetId}/suspend`,
-        headers: { 'Content-Type': 'application/json' },
-      });
-      if (!SUSPEND_FETCH_COMPLETE_FLAG) {
-        console.log('suspend api data', result.data);
-      }
-    }
-    if (suspendTweetId === null) {
-      post();
-      return () => {
-        RESULT_FETCH_COMPLETE_FLAG = true;
-      };
-    } else {
-      suspend();
-      return () => {
-        SUSPEND_FETCH_COMPLETE_FLAG = true;
-      };
-    }
-  }, [suspendTweetId]);
+    post();
+    return () => {
+      RESULT_FETCH_COMPLETE_FLAG = true;
+    };
+  }, []);
 
   const onSelect = (tweetId: number) => dispatch(select(tweetId));
   const onUnselect = (tweetId: number) => dispatch(unselect(tweetId));
