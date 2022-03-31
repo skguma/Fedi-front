@@ -5,7 +5,7 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 import EmailBox from './EmailBox';
 import { theme } from '../../style/theme';
 
-const ReportBoard = ({ tweetUrl, onClear }) => {
+const ReportBoard = ({ tweetUrl, onClear, serverTweetUrl }) => {
   const ex = [
     { accountName: '28', tweetUrl: 'http://www.' },
     { accountName: 'ㅏㅏ', tweetUrl: 'http://www.' },
@@ -26,7 +26,11 @@ const ReportBoard = ({ tweetUrl, onClear }) => {
             ))}
         </AvatarGroup>
       </ReportAccount>
-      <EmailBox tweetUrl={tweetUrl} onClear={onClear} />
+      <EmailBox
+        tweetUrl={tweetUrl}
+        serverTweetUrl={serverTweetUrl}
+        onClear={onClear}
+      />
     </Wrapper>
   );
 };

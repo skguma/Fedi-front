@@ -37,7 +37,8 @@ function ResultContainer() {
     };
   }, []);
 
-  const onSelect = (tweetId: number) => dispatch(select(tweetId));
+  const onSelect = (tweetId: number, tweetUrl: string) =>
+    dispatch(select(tweetId, tweetUrl));
   const onUnselect = (tweetId: number) => dispatch(unselect(tweetId));
   const onSuspend = (suspendTweetId: number) =>
     dispatch(suspends(suspendTweetId));

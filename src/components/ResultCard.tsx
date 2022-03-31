@@ -19,7 +19,7 @@ type ResultCardProps = {
   tweetId: string;
   eyes: string;
   size: string;
-  onSelect: (tweetId: number) => any;
+  onSelect: (tweetId: number, tweetUrl: string) => any;
   onUnselect: (tweetId: number) => any;
   onSuspend: (suspendTweetId: number) => any;
 };
@@ -38,6 +38,7 @@ function ResultCard({
 }: ResultCardProps) {
   const [clicked, setClicked] = useState<boolean>(false);
   const [isSuspend, setIsSuspend] = useState<boolean>(false);
+  const [fetchTweetUrl, setTweetUrl] = useState(tweetUrl);
   const { t } = useTranslation(['page']);
   const [eyesLocation, setEyesLocation] = useState<number>(0);
   const handleClick = (e: any) => {
@@ -46,7 +47,7 @@ function ResultCard({
     console.log('tweetId', tweetId);
     clicked
       ? onUnselect(parseInt(tweetId, 10))
-      : onSelect(parseInt(tweetId, 10));
+      : onSelect(parseInt(tweetId, 10), fetchTweetUrl); // 인자 두 개 전달
     setClicked(!clicked);
   };
 
@@ -179,20 +180,6 @@ const Overlay = styled.div`
   opacity: 0.2;
   pointer: cursor;
 `;
-/*
-const Img = styled.div`
-  background-image: url('${(props) => props.backgroundImage}');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100%;
-  width: 70%;
-  cursor: pointer;
-  box-shadow: 5px 5px 20px grey;
-  position: relative;
-  border-radius: 7px;
-`;
-*/
 
 const EyeBox = styled.div`
   margin-top: ${(props) => props.margin}px;

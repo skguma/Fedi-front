@@ -22,13 +22,17 @@ function NetworkmapContainer() {
 
     dispatch(send(tweetUrl));
   };
-  const tweetId = useSelector((state) => ({ tweetId: state.reports.tweetId }));
+  const tweet = useSelector((state) => ({
+    tweet: state.reports.tweet,
+  }));
 
   useEffect(() => {
-    console.log('tweetId', tweetId.tweetId);
-
-    const param = tweetId.tweetId.join(',');
-    console.log(param);
+    console.log('tweet', tweet);
+    let sendTweetUrl: string[] = [];
+    for (let i = 0; i < tweet.tweet.length; i++) {
+      sendTweetUrl = sendTweetUrl.concat(tweet.tweet[i].tweetId);
+    }
+    const param = sendTweetUrl.join(',');
 
     async function get() {
       const config = {

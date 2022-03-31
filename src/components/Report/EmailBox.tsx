@@ -11,7 +11,7 @@ type jsonDataType = {
   refresh_token: string;
 };
 
-const EmailBox = ({ tweetUrl, onClear }) => {
+const EmailBox = ({ tweetUrl, onClear, serverTweetUrl }) => {
   const { t } = useTranslation(['page']);
   const [isActive, setActive] = useState(false);
   const [values, setValues] = useState({ email: '' });
@@ -81,7 +81,7 @@ const EmailBox = ({ tweetUrl, onClear }) => {
   const postServer = async () => {
     const data = {
       recipient: values.email,
-      tweetUrls: tweetUrl,
+      tweetUrls: serverTweetUrl,
     };
     await axios
       .post('http://15.165.149.176:8080/mail', data, {
