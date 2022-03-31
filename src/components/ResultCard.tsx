@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import '../style/style.css';
 import Fab from '@mui/material/Fab';
 import ClearIcon from '@mui/icons-material/Clear';
+import axios from 'axios';
 
 type ResultCardProps = {
   ranking: number;
@@ -48,13 +49,19 @@ function ResultCard({
     setClicked(!clicked);
   };
 
-  const handleSuspendAccount = (e: any) => {
+  const handleSuspendAccount = async (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
     onSuspend(tweetId);
-    setIsSuspend(true); // 정지 상태면 이미지 위에 회색 창 보여지게하기
+    setIsSuspend(true); 
     alert(t('page:ResultPage.suspendAccountReport'));
+
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    await axios
+      .patch(`http://15.165.149.176:8080/tweets/${tweetId}/suspend`, config)
+      .then((res) => console.log(res.data));
   };
+
   useEffect(() => modifyEyesLocation(), []);
   const modifyEyesLocation = () => {
     let height = size.split(' ');
@@ -77,18 +84,20 @@ function ResultCard({
       >
         <ClearIcon id={tweetId} className="delete-icon" />
       </Fab>
-      <Thumbnail id={tweetId} className="thumbnail" onClick={handleClick}>
-        <Img className="image" id={tweetId} src={imageUrl} />
-        {clicked ? (
-          <>
-            <Overlay id={tweetId} />
-            <CheckButton id={tweetId}>✔</CheckButton>
-          </>
-        ) : (
-          ''
-        )}
-        <EyeBox margin={eyesLocation} />
-      </Thumbnail>
+
+        <Thumbnail id={tweetId} suspend={isSuspend} onClick={handleClick}>
+          <Img className="image" id={tweetId} src={imageUrl} />
+          {clicked ? (
+            <>
+              <Overlay id={tweetId} />
+              <CheckButton id={tweetId}>✔</CheckButton>
+            </>
+          ) : (
+            ''
+          )}
+          <EyeBox margin={eyesLocation} />
+        </Thumbnail>
+      )}
 
       <ResultInfo>
         <Similarity>{similarity.toFixed(2)}%</Similarity>
@@ -128,6 +137,18 @@ const Wrapper = styled.div`
   }
 `;
 
+const SuspendReportBlock = styled.div`
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 15%;
+  background-color: #1196c1;
+  border: 2px solid blue;
+  opacity: 0.2;
+  pointer: cursor;
+`;
+
 const Thumbnail = styled.div`
   height: 80%;
   width: inherit;
@@ -135,6 +156,8 @@ const Thumbnail = styled.div`
   justify-content: center;
   position: relative;
   margin-bottom: 10px;
+  background-color: ${props => (props.suspend? "black": null)}
+  z-index:  ${props => (props.suspend? "100": 0)}
 `;
 
 const Img = styled.img`

@@ -1,8 +1,13 @@
 const SEND = 'email/SEND' as const;
+const CLEAR = 'email/CLEAR' as const;
 
 export const send = (tweetUrl: string[]) => ({
   type: SEND,
   tweetUrl,
+});
+
+export const clear = () => ({
+  type: CLEAR,
 });
 
 type sendState = {
@@ -12,7 +17,7 @@ const initialState: sendState = {
   tweetUrl: [],
 };
 
-type SendAction = ReturnType<typeof send>;
+type SendAction = ReturnType<typeof send> | ReturnType<typeof clear>;
 
 export default function mailSender(
   state: sendState = initialState,
@@ -21,6 +26,8 @@ export default function mailSender(
   switch (action.type) {
     case SEND:
       return { tweetUrl: action.tweetUrl };
+    case CLEAR:
+      return { tweetUrl: null };
     default:
       return state;
   }
