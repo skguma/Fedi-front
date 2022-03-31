@@ -19,7 +19,8 @@
         "subtitle2" : "If the original tweet is deleted or is a suspended account, please click Delete button",
         "nextPage": "show networkmap",
         "tweet" : "tweet",
-        "suspend" : "suspend account"
+        "suspend" : "suspend account",
+        "suspendAccountReport": "Suspended account report has been completed"
     },
     "NetworkmapPage" : {
         "title" : "Twitter networkmap",
