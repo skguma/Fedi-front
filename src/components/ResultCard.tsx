@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import '../style/style.css';
 import Fab from '@mui/material/Fab';
 import ClearIcon from '@mui/icons-material/Clear';
+import Skeleton from '@mui/material/Skeleton';
 import axios from 'axios';
 
 type ResultCardProps = {
