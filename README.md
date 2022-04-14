@@ -2,7 +2,7 @@
 
 ## How to get started
 ```
-$ git clone https://github.com/skguma/Fedi-image-scraper.git
+$ git clone https://github.com/skguma/Fedi-front.git
 
 $ cd Fedi-front
 
