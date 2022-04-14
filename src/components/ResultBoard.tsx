@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ResultCard from './ResultCard';
-import { theme } from '../style/theme';
-import { device } from '../style/theme';
+import { theme, device } from '../style/theme';
 
 type ResultBoardProps = {
   results: any;
