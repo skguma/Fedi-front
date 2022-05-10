@@ -4,8 +4,10 @@ import { ForceGraph } from './NetworkGraph';
 
 const Networkmap = ({ data }) => {
   const nodeHoverTooltip = React.useCallback((node) => {
-    return `<div>${node.accountId}</div>`;
+    const openUrl = () => window.open(node.url, '_blank');
+    return `<div>${node.accountId}<br/><button type="button" onClick=${openUrl}>원본 트윗보기</button></div>`;
   }, []);
+
   return (
     <PageMoveWrapper>
       {data && (
