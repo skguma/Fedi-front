@@ -11,11 +11,11 @@ type jsonDataType = {
   refresh_token: string;
 };
 
-const EmailBox = ({ tweetUrl, onClear, serverTweetUrl }) => {
+// tweetId: 서버에 이메일 보낼 때 같이 보내기 
+const EmailBox = ({ tweetId,  onClear }) => { // tweetUrl: RPA 전송용
   const { t } = useTranslation(['page']);
   const [isActive, setActive] = useState(false);
   const [values, setValues] = useState({ email: '' });
-  const [authorization, setAuthorization] = useState();
   const [reportButtonActive, setReportButtonActive] = useState(true);
 
   const handleChange = (e: any) => {
@@ -23,66 +23,13 @@ const EmailBox = ({ tweetUrl, onClear, serverTweetUrl }) => {
     setValues({ [id]: value });
   };
 
-  const postRPA = async () => {
-    // TODO: 1. Authorization
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-UIPATH-TenantName': 'DefaultTenant',
-      },
-    };
-
-    const jsonData: jsonDataType = {
-      grant_type: 'refresh_token',
-      client_id: '8DEv1AMNXczW3y4U15LL3jYf62jK93n5',
-      refresh_token: 'UfW4urKZuEDGQjsBPhI-95NSvs-EvmYBonBuChXNHapVt',
-    };
-    const stringJsonData = JSON.stringify(jsonData);
-
-    // 최초 한 번에 한해 필요함 이후 24시간마다 갱신
-    await axios.post('/oauth/token', stringJsonData, config).then((res) => {
-      console.log(res.data.access_token);
-      setAuthorization(res.data.access_token); // access_token 얻기
-      startJobs();
-    });
-  };
-
-  const startJobs = async () => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-UIPATH-TenantName': 'DefaultTenant',
-        'X-UIPATH-OrganizationUnitId': '2917894',
-        Authorization: `Bearer ${authorization}`,
-      },
-    };
-
-    const JsonData = {
-      startInfo: {
-        ReleaseKey: '29779fb0-cfe8-4dd7-9a24-bec908fff5ff',
-        Strategy: 'ModernJobsCount',
-        JobsCount: 1,
-        InputArguments:
-          '{"InputArguments":[{"tweetUrl":"https://twitter.com/chimdaewiyasu/status/1497145210891304966"},{"tweetUrl":"https://twitter.com/asdasd19632707/status/1497139763899695106"}]}',
-      },
-    };
-    const jsonString = JSON.stringify(JsonData);
-    await axios
-      .post(
-        '/Jobs/UiPath.Server.Configuration.OData.StartJobs',
-        jsonString,
-        config
-      )
-      .then((res) => {
-        console.log(res.data);
-      });
-  };
-
   const postServer = async () => {
     const data = {
-      recipient: values.email,
-      tweetUrls: serverTweetUrl,
+      email: values.email,
+      imageId: tweetId,
     };
+
+    console.log(data);
     await axios
       .post('http://15.165.149.176:8080/mail', data, {
         headers: { 'Content-Type': 'application/json' },
@@ -94,11 +41,9 @@ const EmailBox = ({ tweetUrl, onClear, serverTweetUrl }) => {
   const handleSubmit = async (e: React.FormEventHandler<HTMLFormElement>) => {
     e.preventDefault();
     if (reportButtonActive && isActive) {
-      // TODO: RPA와 서버 동시에 요청하기
       postServer();
       alert(t('page:ReportPage.emailAlert'));
       setReportButtonActive(false);
-      // postRPA();
     } else if (!isActive) {
       alert(t('page:ReportPage.validEmailCheck'));
     } else {
