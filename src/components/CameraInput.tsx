@@ -6,15 +6,13 @@ import { useTranslation } from 'react-i18next';
 import Webcam from 'react-webcam';
 import CameraIcon from '@mui/icons-material/Camera';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
-import previewImg from '../assets/previewImg.jpg';
-
 type CameraInputProps = {
   onUpload: (file:any) => void;
   onRemove: () => void;
 };
 
 const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
-  const [imageSrc, setImageSrc] = useState<string | null>(previewImg);
+  const [imageSrc, setImageSrc] = useState<string | null>();
   const [webcamOpen, setWebcamOpen] = useState<boolean>(false);
   const [file, setFile] = useState<File>();
   const [isCapture, setIsCapture] = useState<boolean>(false);
@@ -30,7 +28,6 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
   const handleImgRemove = () => {
     onRemove();
     setIsCapture(false);
-    setImageSrc(previewImg);
   };
 
   const handleImgSubmit = () => {
