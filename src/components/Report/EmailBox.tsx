@@ -25,7 +25,7 @@ const EmailBox = ({ tweetId,  onClear }) => {
 
     console.log(data);
     await axios
-      .post('http://15.165.149.176:8080/mail', data, {
+      .post('http://15.165.149.176:8080/networks', data, {
         headers: { 'Content-Type': 'application/json' },
       })
       .then((res) => {
