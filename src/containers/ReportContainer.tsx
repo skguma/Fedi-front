@@ -8,14 +8,13 @@ import axios from 'axios';
 function ReportContainer() {
   const dispatch = useDispatch();
   const [accountName, setAccountName] = useState([]);
-  // 사용자가 선택한 tweetId
   const tweet = useSelector((state: RootState) => ({
     tweet: state.reports.tweet,
   }));
   const onClear = () => dispatch(clear());
   let sendTweetId: Number[] = [];
   for (let i = 0; i < tweet.tweet.length; i++) {
-    sendTweetId.push(tweet.tweet[i].tweetId); // [1, 2, 3]
+    sendTweetId.push(tweet.tweet[i].tweetId); 
   }
   useEffect(() => {
     async function get() {
@@ -25,9 +24,9 @@ function ReportContainer() {
 
       // https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io
       // http://15.165.149.176:8080/tweets/${imageId}/accountInfo
-      const imageId = sendTweetId;
+      const imageId = sendTweetId.join();
       const getNetworkData = await axios
-        .get(`https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/tweets/accountInfo`, config)
+        .get(`http://15.165.149.176:8080/tweets/${imageId}/accountInfo`, config)
         .then((res) => {
           setAccountName(res.data.name);
         })
