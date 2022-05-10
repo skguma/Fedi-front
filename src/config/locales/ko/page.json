@@ -37,5 +37,9 @@
         "helperText": "24시간 이내 전송됩니다",
         "button" : "신고 및 증거 전송받기"
     },
-    "research" : "재검색"
+    "research" : "재검색",
+    "EmptyResult" : {
+        "message1" : "분석 결과가 없습니다",
+        "message2": "다른 사진으로 다시 시도해주세요"
+    }
 }

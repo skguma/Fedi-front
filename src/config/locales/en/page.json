@@ -12,7 +12,7 @@
         "result":"show result",
         "delete": "taking a photo again"
     },
-    "research" : "rescan",
+    "research" : "Retry",
     "ResultPage": {
         "title" : "As a result of face recognition, these photos are suspected",
         "subtitle1": "Please check the original tweet and select only your photos.",
@@ -37,5 +37,9 @@
         "alreadyReport" : "You have already reported it",
         "helperText": "It will be sent within 24 hours",
         "button" : "Reporting and receiving evidence"
+    },
+    "EmptyResult" : {
+        "message1" : "There is no analysis result",
+        "message2": "Please try with other pictures"
     }
 }

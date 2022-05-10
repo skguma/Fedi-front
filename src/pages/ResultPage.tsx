@@ -18,17 +18,16 @@ const ResultPage = () => {
     { id: '1', note: t('page:ResultPage.subtitle1') },
     { id: '2', note: t('page:ResultPage.subtitle2') },
   ];
-
+;
   const nextPage: {
     destination: string;
     name: string;
-  } = { destination: 'networkmap', name: t('page:ResultPage.nextPage') };
+  } = { destination: 'report', name: t('page:NetworkmapPage.nextPage') };
   return (
     <Wrapper>
       <Header />
       <Description informations={informations} />
       <ResultContainer />
-      <PageMove nextPage={nextPage} />
       <Footer />
     </Wrapper>
   );
