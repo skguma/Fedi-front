@@ -63,7 +63,7 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
           <CameraButton onClick={handleWebcamOpen}>
             <AddAPhotoOutlinedIcon color={'success'} fontSize={'large'} />
           </CameraButton>
-          <FaceIcon className="face-icon" fontSize={'large'} />
+          {/* <FaceIcon className="face-icon" fontSize={'large'} /> */}
         </>
       ) : null}
       {webcamOpen && isCapture === false ? (

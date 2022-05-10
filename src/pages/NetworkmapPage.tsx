@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import PageMove from '../components/PageMove';
 import Description from '../components/Description';
 import NetworkmapContainer from '../containers/NetworkmapContainer';
 import Footer from '../components/Footer';
@@ -30,7 +29,7 @@ const NetworkmapPage = () => {
       <Header />
       <Description informations={informations} />
       <NetworkmapContainer />
-      <PageMove nextPage={nextPage} />
+    {/*  <PageMove nextPage={nextPage} />*/}
       <Footer />
     </Wrapper>
   );

@@ -76,7 +76,7 @@ export function runForceGraph(
   };
 
   const removeTooltip = () => {
-    div.transition().duration(200).style('opacity', 0);
+    div.transition().duration(1000).style('opacity', 0);
   };
 
   const simulation = d3

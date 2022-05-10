@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { runForceGraph } from './ForceGraphGenerator';
 import styles from '../../style/forceGraph.module.css';
 
 export function ForceGraph({ linksData, nodesData, nodeHoverTooltip }) {
   const containerRef = React.useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let destroyFn;
 
     if (containerRef.current) {

@@ -87,8 +87,8 @@ function ResultCard({
       >
         <ClearIcon id={tweetId} className="delete-icon" />
       </Fab>
-
-      <Thumbnail id={tweetId} suspend={isSuspend} onClick={handleClick}>
+      {isSuspend ? <SuspendAccountBlock>정지 계정 신고 접수</SuspendAccountBlock>: ''}
+      <Thumbnail id={tweetId} onClick={handleClick}>
         <Img className="image" id={tweetId} src={imageUrl} />
         <EyeBox margin={eyesLocation} id={tweetId} />
         {clicked ? (
@@ -100,7 +100,6 @@ function ResultCard({
           ''
         )}
       </Thumbnail>
-
       <ResultInfo>
         <Similarity>{similarity.toFixed(2)}%</Similarity>
         <TweetURL onClick={() => window.open(`${tweetUrl}`, '_blank')}>
@@ -139,16 +138,20 @@ const Wrapper = styled.div`
   }
 `;
 
-const SuspendReportBlock = styled.div`
-  height: 100%;
+const SuspendAccountBlock = styled.div`
+  height: 85%;
   position: absolute;
   width: 100%;
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
-  left: 15%;
-  background-color: #1196c1;
-  border: 2px solid blue;
-  opacity: 0.2;
-  pointer: cursor;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  z-index: 60;
+  color:white;
 `;
 
 const Thumbnail = styled.div`
@@ -158,8 +161,8 @@ const Thumbnail = styled.div`
   justify-content: center;
   position: relative;
   margin-bottom: 10px;
-  background-color: ${(props) => (props.suspend ? 'black' : null)}
-  z-index:  ${(props) => (props.suspend ? '100' : 0)}
+  background-color: ${(props) => props.isSuspend? 'black' : null}
+  z-index:  ${(props) => props.isSuspend ? 100 : 0}
 `;
 
 const Img = styled.img`

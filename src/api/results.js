@@ -5,10 +5,13 @@ export const getResults = async (file) => {
   form.append('file', file);
   const config = { headers: { 'Content-Type': 'multipart/form-data' } };
   const result = await axios.post(
-    'http://15.165.149.176:8080/results',
+    'https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/results',
     form,
     config
   );
-  console.log('result.data ', result.data);
   return result.data;
 };
+
+// https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io/results
+
+// http://15.165.149.176:8080/results
