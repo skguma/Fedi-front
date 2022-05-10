@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<MainPage />} />
