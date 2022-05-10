@@ -21,8 +21,8 @@ const ResultBoard = ({
       {results &&
         results.map((results, index) => (
           <ResultCard
-            key={results.tweetId}
-            tweetId={results.tweetId}
+            key={results.imageId}
+            tweetId={results.imageId}
             ranking={index}
             imageUrl={results.imageUrl}
             eyes={results.eyes}
