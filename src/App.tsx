@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/result" element={<ResultPage />} />
-            <Route path="/networkmap" element={<NetworkmapPage />} />
+            <Route path="/retweets/:tweetId" element={<NetworkmapPage />} />
             <Route path="/report" element={<ReportPage />} />
           </Routes>
         </Router>
