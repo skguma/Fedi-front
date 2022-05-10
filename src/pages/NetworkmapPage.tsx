@@ -20,16 +20,12 @@ const NetworkmapPage = () => {
       note: t('page:NetworkmapPage.subtitle2'),
     },
   ];
-  const nextPage = {
-    destination: 'report',
-    name: t('page:NetworkmapPage.nextPage'),
-  };
+
   return (
     <Wrapper>
       <Header />
       <Description informations={informations} />
       <NetworkmapContainer />
-    {/*  <PageMove nextPage={nextPage} />*/}
       <Footer />
     </Wrapper>
   );

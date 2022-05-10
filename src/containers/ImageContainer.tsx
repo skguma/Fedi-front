@@ -1,6 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../modules';
+import { useDispatch } from 'react-redux';
 import { upload, remove } from '../modules/images';
 import CameraInput from '../components/CameraInput';
 

@@ -5,27 +5,21 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 import EmailBox from './EmailBox';
 import { theme } from '../../style/theme';
 
-function stringToColor(string) {
-  let hash = 0;
-  let i;
-
-  /* eslint-disable no-bitwise */
+const stringToColor = (string) => {
+  let hash = 0, i = 0;
   for (i = 0; i < string.length; i += 1) {
     hash = string.charCodeAt(i) + ((hash << 5) - hash);
   }
-
   let color = '#';
 
   for (i = 0; i < 3; i += 1) {
     const value = (hash >> (i * 5)) & 0xff;
     color += `00${value.toString(16)}`.slice(-2);
   }
-  /* eslint-enable no-bitwise */
-
   return color;
 }
 
-function stringAvatar(name) {
+const stringAvatar = (name) => {
   return {
     sx: {
       bgcolor: stringToColor(name),
@@ -35,13 +29,7 @@ function stringAvatar(name) {
 }
 
 const ReportBoard = ({ onClear, tweetId, accountName }) => {
-  const ex = [
-    { accountName: '28', tweetUrl: 'http://www.' },
-    { accountName: 'ㅏㅏ', tweetUrl: 'http://www.' },
-  ];
-
   accountName.map((account) => console.log(account));
-  //console.log(accountNa)
   return (
     <Wrapper>
       <ReportAccount>

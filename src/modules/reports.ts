@@ -2,10 +2,9 @@ const SELECT = 'report/SELECT' as const;
 const UNSELECT = 'report/UNSELECT' as const;
 const SUSPEND = 'report/SUSPEND' as const;
 
-export const select = (tweetId: number, tweetUrl: string) => ({
+export const select = (tweetId: number) => ({
   type: SELECT,
-  tweetId,
-  tweetUrl,
+  tweetId
 });
 export const unselect = (tweetId: number) => ({
   type: UNSELECT,
@@ -20,7 +19,6 @@ export const suspend = (tweetId: number) => ({
 type reportState = {
   tweet: {
     tweetId: number;
-    tweetUrl: string;
   }[];
 };
 const initialState: reportState = {
@@ -41,7 +39,7 @@ export default function reports(
       return {
         tweet: [
           ...state.tweet, // 나머지 트윗 그대로
-          { tweetId: action.tweetId, tweetUrl: action.tweetUrl },
+          { tweetId: action.tweetId },
         ],
       };
 
