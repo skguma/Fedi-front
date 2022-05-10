@@ -6,18 +6,17 @@ import { useTranslation } from 'react-i18next';
 import Webcam from 'react-webcam';
 import CameraIcon from '@mui/icons-material/Camera';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
-import FaceIcon from '@mui/icons-material/Face';
 import previewImg from '../assets/previewImg.jpg';
 
 type CameraInputProps = {
-  onUpload: () => void;
+  onUpload: (file:any) => void;
   onRemove: () => void;
 };
 
 const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
   const [imageSrc, setImageSrc] = useState<string | null>(previewImg);
   const [webcamOpen, setWebcamOpen] = useState<boolean>(false);
-  const [file, setFile] = useState();
+  const [file, setFile] = useState<File>();
   const [isCapture, setIsCapture] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -44,7 +43,7 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
     facingMode: 'user',
   };
 
-  const dataURLtoFile = (dataurl: string, fileName: string) => {
+  const dataURLtoFile = (dataurl: String, fileName: string) => {
     const arr = dataurl.split(',');
     const mime = arr[0].match(/:(.*?);/)[1];
     const bstr = atob(arr[1]);
@@ -63,7 +62,6 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
           <CameraButton onClick={handleWebcamOpen}>
             <AddAPhotoOutlinedIcon color={'success'} fontSize={'large'} />
           </CameraButton>
-          {/* <FaceIcon className="face-icon" fontSize={'large'} /> */}
         </>
       ) : null}
       {webcamOpen && isCapture === false ? (

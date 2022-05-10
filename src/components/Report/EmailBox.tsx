@@ -5,22 +5,16 @@ import axios from 'axios';
 import { theme } from '../../style/theme';
 import { useTranslation } from 'react-i18next';
 
-type jsonDataType = {
-  grant_type: string;
-  client_id: string;
-  refresh_token: string;
-};
-
-// tweetId: 서버에 이메일 보낼 때 같이 보내기 
-const EmailBox = ({ tweetId,  onClear }) => { // tweetUrl: RPA 전송용
+const EmailBox = ({ tweetId,  onClear }) => {
   const { t } = useTranslation(['page']);
   const [isActive, setActive] = useState(false);
   const [values, setValues] = useState({ email: '' });
   const [reportButtonActive, setReportButtonActive] = useState(true);
 
   const handleChange = (e: any) => {
-    const { id, value } = e.target;
-    setValues({ [id]: value });
+    const target = e.target as HTMLInputElement
+    const { id, value } = target;
+    setValues({ email: value });
   };
 
   const postServer = async () => {
@@ -38,7 +32,7 @@ const EmailBox = ({ tweetId,  onClear }) => { // tweetUrl: RPA 전송용
         console.log(res.data);
       });
   };
-  const handleSubmit = async (e: React.FormEventHandler<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (reportButtonActive && isActive) {
       postServer();
