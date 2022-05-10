@@ -17,7 +17,7 @@ type ResultCardProps = {
   tweetId: string;
   eyes: string;
   size: string;
-  onSelect: (tweetId: number, tweetUrl: string) => any;
+  onSelect: (tweetId: number) => any;
   onUnselect: (tweetId: number) => any;
   onSuspend: (suspendTweetId: number) => any;
 };
@@ -36,7 +36,6 @@ function ResultCard({
 }: ResultCardProps) {
   const [clicked, setClicked] = useState<boolean>(false);
   const [isSuspend, setIsSuspend] = useState<boolean>(false);
-  const [fetchTweetUrl, setTweetUrl] = useState(tweetUrl);
   const { t } = useTranslation(['page']);
   const [eyesLocation, setEyesLocation] = useState<string>();
   const handleClick = (e: any) => {
@@ -45,17 +44,16 @@ function ResultCard({
     console.log('tweetId', tweetId);
     clicked
       ? onUnselect(parseInt(tweetId, 10))
-      : onSelect(parseInt(tweetId, 10), fetchTweetUrl); // 인자 두 개 전달
+      : onSelect(parseInt(tweetId, 10));
     setClicked(!clicked);
   };
 
   const handleSuspendAccount = async (e: any) => {
     e.preventDefault();
-    const tweetId = e.target.id;
+    const tweetId = Number.parseInt(e.target.id);
     onSuspend(tweetId);
     setIsSuspend(true);
     alert(t('page:ResultPage.suspendAccountReport'));
-
     const config = { headers: { 'Content-Type': 'application/json' } };
     await axios
       .patch(`http://15.165.149.176:8080/tweets/${tweetId}/suspend`, config)
