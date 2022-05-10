@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
-import PageMove from '../components/PageMove';
 import Description from '../components/Description';
 import ResultContainer from '../containers/ResultContainer';
 import Footer from '../components/Footer';
@@ -19,10 +18,6 @@ const ResultPage = () => {
     { id: '2', note: t('page:ResultPage.subtitle2') },
   ];
 ;
-  const nextPage: {
-    destination: string;
-    name: string;
-  } = { destination: 'report', name: t('page:NetworkmapPage.nextPage') };
   return (
     <Wrapper>
       <Header />

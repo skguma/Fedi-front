@@ -5,20 +5,18 @@ import reports from './reports';
 import images from './images';
 import suspender from './suspends';
 import mailSender from './mailSender';
-import loading from './loading';
 import results from './results';
 
 const persistConfig = {
   key: 'root',
   storage: storageSession,
   whitelist: [
-    'suspender, reports, loading, mailSender, fetchResultAPIData, results, image',
+    'suspender, reports, mailSender, fetchResultAPIData, results, image',
   ],
 };
 const rootReducer = combineReducers({
   reports,
   images,
-  loading,
   results,
   mailSender,
   suspender,

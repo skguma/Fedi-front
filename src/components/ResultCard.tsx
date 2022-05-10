@@ -1,22 +1,19 @@
 import React, {
   useEffect,
-  useState,
-  DetailedHTMLProps,
-  HTMLAttributes,
+  useState
 } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import '../style/style.css';
 import Fab from '@mui/material/Fab';
 import ClearIcon from '@mui/icons-material/Clear';
-import Skeleton from '@mui/material/Skeleton';
 import axios from 'axios';
 
 type ResultCardProps = {
   ranking: number;
   similarity: number;
   tweetUrl: string;
-  imageUrl: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  imageUrl: string;
   tweetId: string;
   eyes: string;
   size: string;
@@ -41,7 +38,7 @@ function ResultCard({
   const [isSuspend, setIsSuspend] = useState<boolean>(false);
   const [fetchTweetUrl, setTweetUrl] = useState(tweetUrl);
   const { t } = useTranslation(['page']);
-  const [eyesLocation, setEyesLocation] = useState<number>(0);
+  const [eyesLocation, setEyesLocation] = useState<string>();
   const handleClick = (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
@@ -70,9 +67,8 @@ function ResultCard({
     let height = size.split(' ');
     const eyesSplit = eyes.split(' ');
     const eyesLocation = Math.floor(parseInt(eyesSplit[1]));
-    height = parseInt(height[1]);
-    const ratio = Math.floor((eyesLocation / height) * 100);
-    setEyesLocation(2 * ratio - 30);
+    const ratio = Math.floor((eyesLocation / parseInt(height[1])) * 100);
+    setEyesLocation((2 * ratio - 30) + '');
   };
 
   return (
@@ -88,7 +84,7 @@ function ResultCard({
         <ClearIcon id={tweetId} className="delete-icon" />
       </Fab>
       {isSuspend ? <SuspendAccountBlock>정지 계정 신고 접수</SuspendAccountBlock>: ''}
-      <Thumbnail id={tweetId} onClick={handleClick}>
+      <Thumbnail id={tweetId} onClick={handleClick} isSuspend>
         <Img className="image" id={tweetId} src={imageUrl} />
         <EyeBox margin={eyesLocation} id={tweetId} />
         {clicked ? (
@@ -154,7 +150,7 @@ const SuspendAccountBlock = styled.div`
   color:white;
 `;
 
-const Thumbnail = styled.div`
+const Thumbnail = styled.div<{ isSuspend: boolean }>`
   height: 80%;
   width: inherit;
   display: flex;
@@ -185,7 +181,7 @@ const Overlay = styled.div`
   pointer: cursor;
 `;
 
-const EyeBox = styled.div`
+const EyeBox = styled.div<{ margin: string }>`
   margin-top: ${(props) => props.margin}px;
   position: absolute;
   width: 70%;

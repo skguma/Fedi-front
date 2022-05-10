@@ -5,6 +5,7 @@ import { select, unselect } from '../modules/reports';
 import { suspends } from '../modules/suspends';
 import { getResults } from '../modules/results';
 import PageMove from '../components/PageMove';
+import { RootState } from '../modules';
 import SkeletonUi from '../components/Skeleton';
 import EmptyResult from '../components/EmptyResult';
 import { useTranslation } from 'react-i18next';
@@ -16,19 +17,19 @@ function ResultContainer() {
     destination: string;
     name: string;
   } = { destination: 'report', name: t('page:NetworkmapPage.nextPage') };
-  const { file } = useSelector((state) => ({
+  const { file } = useSelector((state: RootState) => ({
     file: state.images.file,
   }));
   const { data, loading, error } = useSelector(
-    (state) => state.results.results
+    (state: RootState) => state.results.results
   );
 
   useEffect(() => {
     dispatch(getResults(file));
   }, []);
 
-  const onSelect = (tweetId: number, tweetUrl: string) =>
-    dispatch(select(tweetId, tweetUrl));
+  const onSelect = (tweetId: number) =>
+    dispatch(select(tweetId));
   const onUnselect = (tweetId: number) => dispatch(unselect(tweetId));
   const onSuspend = (suspendTweetId: number) =>
     dispatch(suspends(suspendTweetId));
@@ -36,6 +37,7 @@ function ResultContainer() {
   if (loading) return <SkeletonUi />;
   if (error) return <div>에러 발생!</div>;
   if (!data || data.length ===0) return <EmptyResult/>;
+  
   else return (
     <>
     <ResultBoard

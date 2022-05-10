@@ -1,4 +1,4 @@
-const SUSPEND = 'report/SUSPEND';
+const SUSPEND = 'report/SUSPEND' as const;
 
 export const suspends = (suspendTweetId: number) => ({
   type: SUSPEND,

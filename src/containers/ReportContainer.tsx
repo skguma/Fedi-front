@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReportBoard from '../components/Report/ReportBoard';
 import { clear } from '../modules/mailSender';
+import { RootState } from '../modules';
 import axios from 'axios';
 
 function ReportContainer() {
   const dispatch = useDispatch();
   const [accountName, setAccountName] = useState([]);
-  const [tweetId, setTweetId] = useState([]);
-  // 서버 전송용 tweetId (사용자가 선택한 tweetId의 tweetUrl)
-  const tweet = useSelector((state) => ({
+  // 사용자가 선택한 tweetId
+  const tweet = useSelector((state: RootState) => ({
     tweet: state.reports.tweet,
   }));
   const onClear = () => dispatch(clear());

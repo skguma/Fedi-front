@@ -5,9 +5,9 @@ import { theme, device } from '../style/theme';
 
 type ResultBoardProps = {
   results: any;
-  onSelect: () => void;
-  onUnselect: () => void;
-  onSuspend: () => void;
+  onSelect: (tweetId: number) => void;
+  onUnselect: (tweetId: number) => void;
+  onSuspend: (suspendTweetId: number) => void;
 };
 
 const ResultBoard = ({

@@ -18,20 +18,6 @@ export const WrapperWithHeaderFooter = css`
   height: 100vh;
 `;
 
-const margins = {
-  sm: '.5rem',
-  base: '1rem',
-  lg: '2rem',
-  xl: '3rem',
-};
-
-const paddings = {
-  sm: '.5rem',
-  base: '1rem',
-  lg: '2rem',
-  xl: '3rem',
-};
-
 export const fonts = {
   family: {
     base: `'Noto Sans KR', sans-serif`,
