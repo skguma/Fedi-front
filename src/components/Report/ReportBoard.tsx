@@ -5,30 +5,59 @@ import AvatarGroup from '@mui/material/AvatarGroup';
 import EmailBox from './EmailBox';
 import { theme } from '../../style/theme';
 
-const ReportBoard = ({ tweetUrl, onClear, serverTweetUrl }) => {
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = '#';
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 5)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
+}
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name}`,
+  };
+}
+
+const ReportBoard = ({ onClear, tweetId, accountName }) => {
   const ex = [
     { accountName: '28', tweetUrl: 'http://www.' },
     { accountName: 'ㅏㅏ', tweetUrl: 'http://www.' },
   ];
+
+  accountName.map((account) => console.log(account));
+  //console.log(accountNa)
   return (
     <Wrapper>
       <ReportAccount>
-        <AvatarGroup className="avatar" total={10}>
-          {ex &&
-            ex.map((account, index) => (
+        <AvatarGroup className="avatar" total={accountName.length}>
+          {accountName &&
+            accountName.map((account, index) => (
               <Avatar
+              {...stringAvatar(account)} 
                 key={index}
-                alt={account.accountName}
-                sx={{ width: 60, height: 60 }}
-              >
-                {account.accountName}
-              </Avatar>
+                alt={account}
+               />
             ))}
         </AvatarGroup>
       </ReportAccount>
       <EmailBox
-        tweetUrl={tweetUrl}
-        serverTweetUrl={serverTweetUrl}
+       tweetId={tweetId}
         onClear={onClear}
       />
     </Wrapper>
