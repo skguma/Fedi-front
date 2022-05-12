@@ -8,6 +8,7 @@ import '../style/style.css';
 import Fab from '@mui/material/Fab';
 import ClearIcon from '@mui/icons-material/Clear';
 import axios from 'axios';
+import { theme, flexCenter } from '../style/theme';
 
 type ResultCardProps = {
   ranking: number;
@@ -81,7 +82,7 @@ function ResultCard({
       >
         <ClearIcon id={tweetId} className="delete-icon" />
       </Fab>
-      {isSuspend ? <SuspendAccountBlock>정지 계정 신고 접수</SuspendAccountBlock>: ''}
+      {isSuspend ? <SuspendAccountBlock>🚨<br/>{t('page:ResultPage.suspend')}</SuspendAccountBlock>: ''}
       <Thumbnail id={tweetId} onClick={handleClick} isSuspend>
         <Img className="image" id={tweetId} src={imageUrl} />
         <EyeBox margin={eyesLocation} id={tweetId} />
@@ -133,19 +134,21 @@ const Wrapper = styled.div`
 `;
 
 const SuspendAccountBlock = styled.div`
-  height: 85%;
+  height: 100%;
   position: absolute;
   width: 100%;
   display: flex;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  border: dashed ${theme.color.grey};
   top: 0;
   font-size: 15px;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: ${theme.color.bgColor};
   border-radius: 10px;
   z-index: 60;
-  color:white;
+  color: ${theme.color.grey};
 `;
 
 const Thumbnail = styled.div<{ isSuspend: boolean }>`
