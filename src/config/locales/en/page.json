@@ -17,7 +17,6 @@
         "title" : "As a result of face recognition, these photos are suspected",
         "subtitle1": "Please check the original tweet and select only your photos.",
         "subtitle2" : "If the original tweet is deleted or is a suspended account, please click Delete button",
-        "nextPage": "show networkmap",
         "tweet" : "tweet",
         "suspend" : "Receipt of suspended account report",
         "suspendAccountReport": "Suspended account report has been completed"
@@ -25,21 +24,21 @@
     "NetworkmapPage" : {
         "title" : "Twitter networkmap",
         "subtitle1": "It is the account where clicked like or retweet on the original tweet",
-        "subtitle2" : "You can report all the accounts by pressing the Report button",
+        "subtitle2" : "If you click on the nodes, you can move on to original tweet and check the report result",
         "nextPage": "Report"
     },
     "ReportPage" : {
         "title" : "Please enter your email and click the report button",
         "subtitle1": "False reporting is a felony",
-        "subtitle2" : "Please report only the definite pictures",
-        "emailAlert" : "It has been sent by e-mail",
+        "subtitle2" : "Please report only the definite images",
+        "emailAlert" : "A report has been filed",
         "validEmailCheck" : "Please enter your e-mail in a proper format",
         "alreadyReport" : "You have already reported it",
         "helperText": "It will be sent within 24 hours",
-        "button" : "Reporting and receiving evidence"
+        "button" : "Report on Twitter and receive evidence"
     },
     "EmptyResult" : {
         "message1" : "There is no analysis result",
-        "message2": "Please try with other pictures"
+        "message2": "Please try with other images"
     }
 }
