@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Fedi-front/build/static/css/main.65489f69.css",
-    "main.js": "/Fedi-front/build/static/js/main.a4e77e40.js",
+    "main.js": "/Fedi-front/build/static/js/main.de5e62b0.js",
     "index.html": "/Fedi-front/build/index.html",
     "main.65489f69.css.map": "/Fedi-front/build/static/css/main.65489f69.css.map",
-    "main.a4e77e40.js.map": "/Fedi-front/build/static/js/main.a4e77e40.js.map"
+    "main.de5e62b0.js.map": "/Fedi-front/build/static/js/main.de5e62b0.js.map"
   },
   "entrypoints": [
     "static/css/main.65489f69.css",
-    "static/js/main.a4e77e40.js"
+    "static/js/main.de5e62b0.js"
   ]
 }
