@@ -37,7 +37,7 @@ const Contact = styled.div`
   width: 90%;
   font-size: 13px;
   line-height: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   padding-top: 20px;
   border-top: 1px solid white;
   box-sizing: border-box;
