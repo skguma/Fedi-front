@@ -86,16 +86,22 @@ const Wrapper = styled.div`
 `;
 
 const StyledButton = styled.button<{ isActive: boolean }>`
-  border: ${({ isActive }) => (isActive ? '1px solid grey' : '0px')};
-  border-radius: 10px;
+  border: ${({ isActive }) => (isActive ? '1px solid' : '0px')};
+  border-radius: 20px;
   color: ${({ isActive }) =>
-    isActive ? theme.color.black : theme.color.white};
+    isActive ? theme.color.white : theme.color.white};
   background-color: ${({ isActive }) =>
-    isActive ? theme.color.white : '#D3D3D3'};
-  height: 40px;
+    isActive ? theme.color.blue : '#D3D3D3'};
+  height: 50px;
+  font-weight: bold;
   cursor: pointer;
-  margin-top: 15px;
-  width: 75%;
+  margin-top: 30px;
+  width: 90%;
+  font-size: 14px;
+  &:hover{
+    background-color: ${({ isActive }) =>
+    isActive ? '#000080' : '#D3D3D3' };
+  }
 `;
 
 const InputWrapper = styled.div`

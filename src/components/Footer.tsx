@@ -26,39 +26,43 @@ const FooterWrapper = styled.div`
   ${flexCenter}
   bottom: 0;
   flex-direction: column;
-  height: 200px;
+  height: 150px;
   width: 100%;
-  background-color: ${theme.color.blue};
+  background-color: #CED9EA;
 `;
 
 const Contact = styled.div`
   align-self: flex-start;
-  color: ${theme.color.white};
+  color: grey;
   width: 90%;
   font-size: 13px;
   line-height: 20px;
   padding-bottom: 10px;
-  padding-top: 20px;
-  border-top: 1px solid white;
   box-sizing: border-box;
-  margin: 20px;
+  margin-bottom: 10px;
+  padding-left: 10px;
 `;
 
 const Button = styled.button`
   border: 1px solid white;
-  border-radius: 50px;
-  width: 280px;
+  border-radius: 5px;
+  width: 250px;
   cursor: pointer;
   background-color: white;
   color: black;
+  height: 80px;
   font-weight: bold;
-  padding: 18px;
-  margin-top: 40px;
+  padding: 20px;
+  margin-top: 20px;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 15px;
+  &:hover {
+    background: #d0cfd1;
+    border: 1px solid #d0cfd1;
+  }
 `;
 
 const Message = styled.div`
-  font-size: 12px;
+  font-size: 10px;
   color: grey;
 `;
