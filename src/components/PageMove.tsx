@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { theme } from '../style/theme';
 import { useTranslation } from 'react-i18next';
+import ReplayIcon from '@mui/icons-material/Replay';
 
 type PageMoveProps = {
   nextPage: {
@@ -16,10 +17,11 @@ const PageMove = ({ nextPage }: PageMoveProps) => {
   const navigate = useNavigate();
   return (
     <PageMoveWrapper>
-      <StyledButton onClick={() => navigate('/')}>
+      <RetryButton color="white" onClick={() => navigate('/')}>
+        <ReplayIcon/>
         {t('page:research')}
-      </StyledButton>
-      <StyledButton onClick={() => navigate(`/${destination}`)}>
+      </RetryButton>
+      <StyledButton color={theme.color.blue} onClick={() => navigate(`/${destination}`)}>
         {name}
       </StyledButton>
     </PageMoveWrapper>
@@ -28,18 +30,37 @@ const PageMove = ({ nextPage }: PageMoveProps) => {
 
 export default PageMove;
 
-const StyledButton = styled.div`
+const RetryButton = styled.div<{color: string}>`
+display: flex;
+justify-content: center;
+align-items: center;
+width: 25%;
+border-radius: 20px;
+cursor: pointer;
+font-weight: bold;
+height: 40px;
+border: 1px solid lightgrey;
+background: ${props => props.color};
+color: black;
+font-size: 15px;
+&:hover {
+  background: #d0cfd1;
+  color: black;
+}
+`;
+const StyledButton = styled.div<{color: string}>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 35%;
   border-radius: 20px;
   cursor: pointer;
-  height: 30px;
+  font-weight: bold;
+  height: 40px;
   border: 1px solid lightgrey;
-  background: ${theme.color.white};
-  color: black;
-  font-size: 13px;
+  background: ${props => props.color};
+  color: white;
+  font-size: 15px;
   &:hover {
     background: #d0cfd1;
     color: black;
@@ -52,8 +73,9 @@ const PageMoveWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  height: 50px;
+  justify-content: center;
+  gap: 30px;
+  height: 100px;
   background-color: ${theme.color.bgColor};
   width: inherit;
 `;
