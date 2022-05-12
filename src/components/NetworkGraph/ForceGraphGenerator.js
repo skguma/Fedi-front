@@ -31,6 +31,10 @@ export function runForceGraph(
     return d.value === 1 ? 18 : 12;
   };
 
+  const openOriginalTweet = (d) => {
+    return window.open(d.url, '_blank');
+  };
+
   const drag = (simulation) => {
     const dragstarted = (d) => {
       if (!d3.event.active) simulation.alphaTarget(0.3).restart();
@@ -68,7 +72,7 @@ export function runForceGraph(
   const div = d3.select('#graph-tooltip');
 
   const addTooltip = (hoverTooltip, d, x, y) => {
-    div.transition().duration(200).style('opacity', 0.9);
+    div.transition().duration(500).style('opacity', 0.9);
     div
       .html(hoverTooltip(d))
       .style('left', `${x}px`)
@@ -118,6 +122,7 @@ export function runForceGraph(
     .join('circle')
     .attr('r', (d) => getRadius(d))
     .attr('fill', (d) => `${getColor(d)}`)
+    .on('click', (d) => `${getUrl(d)}`)
     .call(drag(simulation));
 
   const label = svg
@@ -138,6 +143,9 @@ export function runForceGraph(
   label
     .on('mouseover', (d) => {
       addTooltip(nodeHoverTooltip, d, d3.event.pageX, d3.event.pageY);
+    })
+    .on('click', (d) => {
+      openOriginalTweet(d);
     })
     .on('mouseout', () => {
       removeTooltip();
