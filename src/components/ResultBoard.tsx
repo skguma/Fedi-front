@@ -44,9 +44,10 @@ const Wrapper = styled.div`
   display: grid;
   ${device.mobile} {
     justify-content: center;
-    grid-template-columns: repeat(2, 150px);
+    grid-template-columns: repeat(2, 170px);
   }
   ${device.tablet} {
+    justify-content: center;
     grid-template-columns: repeat(2, 200px);
   }
   grid-gap: 7px;

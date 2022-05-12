@@ -7,7 +7,7 @@ export const flexCenter = css`
 `;
 
 export const WrapperWithHeader = css`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   padding-top: 50px;
   box-sizing: border-box;
@@ -75,6 +75,6 @@ export const size = {
 };
 
 export const device = {
-  mobile: `@media only screen and (min-width: ${size.mobile})`,
+  mobile: `@media only screen and (min-width: ${size.mobile}) and (max-width: ${size.tablet})`,
   tablet: `@media only screen and (min-width: ${size.tablet})`,
 };

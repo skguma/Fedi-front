@@ -49,9 +49,10 @@ const Wrapper = styled.div`
   ${device.mobile} {
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(2, 150px);
+    grid-template-columns: repeat(2, 170px);
   }
   ${device.tablet} {
+    justify-content: center;
     align-items: center;
     grid-template-columns: repeat(2, 200px);
   }
