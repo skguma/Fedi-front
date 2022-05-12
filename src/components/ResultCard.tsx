@@ -3,12 +3,12 @@ import React, {
   useState
 } from 'react';
 import styled from 'styled-components';
+import { theme, flexCenter } from '../style/theme';
 import { useTranslation } from 'react-i18next';
 import '../style/style.css';
 import Fab from '@mui/material/Fab';
 import ClearIcon from '@mui/icons-material/Clear';
 import axios from 'axios';
-import { theme, flexCenter } from '../style/theme';
 
 type ResultCardProps = {
   ranking: number;
@@ -53,6 +53,7 @@ function ResultCard({
     e.preventDefault();
     const tweetId = Number.parseInt(e.target.id);
     onSuspend(tweetId);
+    onUnselect(tweetId);
     setIsSuspend(true);
     alert(t('page:ResultPage.suspendAccountReport'));
     const config = { headers: { 'Content-Type': 'application/json' } };
@@ -86,14 +87,7 @@ function ResultCard({
       <Thumbnail id={tweetId} onClick={handleClick} isSuspend>
         <Img className="image" id={tweetId} src={imageUrl} />
         <EyeBox margin={eyesLocation} id={tweetId} />
-        {clicked ? (
-          <>
-            <Overlay id={tweetId} />
-            <CheckButton id={tweetId}>✔</CheckButton>
-          </>
-        ) : (
-          ''
-        )}
+        {clicked ? <Overlay id={tweetId} /> : ''}
       </Thumbnail>
       <ResultInfo>
         <Similarity>{similarity.toFixed(2)}%</Similarity>
@@ -175,11 +169,10 @@ const Overlay = styled.div`
   position: absolute;
   width: 70%;
   top: 0;
-  left: 15%;
-  background-color: #1196c1;
-  border: 2px solid blue;
-  opacity: 0.2;
-  pointer: cursor;
+  background-color: black;
+  border: 5px solid #00D4FF;
+  opacity: 0.5;
+  cursor: pointer;
 `;
 
 const EyeBox = styled.div<{ margin: string }>`
