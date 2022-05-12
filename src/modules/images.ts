@@ -1,10 +1,6 @@
-// 액션 타입 선언
-
 const UPLOAD = 'image/UPLOAD' as const;
 const REMOVE = 'image/DELETE' as const;
 
-
-// 액션 생성 함수 선언
 export const upload = (file: any) => ({
   type: UPLOAD,
   file,
@@ -20,7 +16,6 @@ const initialState: imageState = {
   file: null,
 };
 
-// ReturnType: 함수에서 반환하는 타입 가져옴
 type ImageAction = ReturnType<typeof upload> | ReturnType<typeof remove>;
 
 export default function images(

@@ -22,7 +22,7 @@ type reportState = {
   }[];
 };
 const initialState: reportState = {
-  tweet: [], // 빈 배열
+  tweet: [],
 };
 
 type ReportAction =
@@ -38,7 +38,7 @@ export default function reports(
     case SELECT:
       return {
         tweet: [
-          ...state.tweet, // 나머지 트윗 그대로
+          ...state.tweet,
           { tweetId: action.tweetId },
         ],
       };
