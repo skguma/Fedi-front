@@ -92,7 +92,7 @@ const StyledButton = styled.button<{ isActive: boolean }>`
     isActive ? theme.color.black : theme.color.white};
   background-color: ${({ isActive }) =>
     isActive ? theme.color.white : '#D3D3D3'};
-  height: 30px;
+  height: 40px;
   cursor: pointer;
   margin-top: 15px;
   width: 75%;
