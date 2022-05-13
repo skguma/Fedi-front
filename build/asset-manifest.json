@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.65489f69.css",
-    "main.js": "/static/js/main.006834ba.js",
-    "static/media/logo.png": "/static/media/logo.efc082355e64c229a9ea.png",
-    "index.html": "/index.html",
-    "main.65489f69.css.map": "/static/css/main.65489f69.css.map",
-    "main.006834ba.js.map": "/static/js/main.006834ba.js.map"
+    "main.css": "/Fedi-front/build/static/css/main.65489f69.css",
+    "main.js": "/Fedi-front/build/static/js/main.c0746bb1.js",
+    "static/media/logo.png": "/Fedi-front/build/static/media/logo.efc082355e64c229a9ea.png",
+    "index.html": "/Fedi-front/build/index.html",
+    "main.65489f69.css.map": "/Fedi-front/build/static/css/main.65489f69.css.map",
+    "main.c0746bb1.js.map": "/Fedi-front/build/static/js/main.c0746bb1.js.map"
   },
   "entrypoints": [
     "static/css/main.65489f69.css",
-    "static/js/main.006834ba.js"
+    "static/js/main.c0746bb1.js"
   ]
 }
