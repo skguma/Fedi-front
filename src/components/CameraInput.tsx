@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { theme } from '../style/theme';
+import { theme, flexCenter } from '../style/theme';
 import { useTranslation } from 'react-i18next';
 import Webcam from 'react-webcam';
 import CameraIcon from '@mui/icons-material/Camera';
@@ -14,6 +14,7 @@ type CameraInputProps = {
 const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
   const [imageSrc, setImageSrc] = useState<string | null>();
   const [webcamOpen, setWebcamOpen] = useState<boolean>(false);
+  const webcamRef = useRef(null);
   const [file, setFile] = useState<File>();
   const [isCapture, setIsCapture] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -35,9 +36,18 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
     navigate('/result');
   };
   const videoConstraints = {
-    width: 1280, // 1280 x 720
+    width: 1280,
     height: 720,
     facingMode: 'user',
+  };
+
+  const handleCapture = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    const file = dataURLtoFile(imageSrc, 'test-image.jpeg');
+    setFile(file);
+    setImageSrc(imageSrc);
+    setIsCapture(true);
+    setWebcamOpen(false);
   };
 
   const dataURLtoFile = (dataurl: String, fileName: string) => {
@@ -62,31 +72,21 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
         </>
       ) : null}
       {webcamOpen && isCapture === false ? (
+        <>
         <Webcam
           width={1280}
           height={720}
+          ref={webcamRef}
           className="web-cam"
           audio={false}
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
-        >
-          {({ getScreenshot }) => (
-            <CameraButton>
+        />
+            <CameraButton onClick={handleCapture}>
               <CameraIcon
-                fontSize={'large'}
-                onClick={() => {
-                  const imageSrc = getScreenshot();
-                  const file = dataURLtoFile(imageSrc, 'test-image.jpeg');
-                  setFile(file);
-                  setImageSrc(imageSrc);
-                  setIsCapture(true);
-                  setWebcamOpen(false);
-                }}
-              />
+                fontSize={'large'} />
             </CameraButton>
-          )}
-        </Webcam>
-      ) : null}
+      </>) : null}
       {webcamOpen === false && isCapture === true ? (
         <>
           <Img alt="upload" src={imageSrc} />
@@ -127,13 +127,14 @@ const CameraWrapper = styled.div`
   }
 `;
 
-const CameraButton = styled.button`
+const CameraButton = styled.div`
   border: 0;
   outline: 0;
   background-color: white;
   border: 1px solid lightgrey;
   width: 30%;
   height: 20%;
+  ${flexCenter}
   box-shadow: 5px 5px 20px lightgrey;
   border-radius: 7px;
   cursor: pointer;
