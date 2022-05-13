@@ -90,11 +90,11 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
       {webcamOpen === false && isCapture === true ? (
         <>
           <Img alt="upload" src={imageSrc} />
-          <StyledButton onClick={handleImgSubmit}>
-            {t('page:MainButton.result')}
-          </StyledButton>
-          <StyledButton onClick={handleImgRemove}>
+          <StyledButton color="white" onClick={handleImgRemove}>
             {t('page:MainButton.delete')}
+          </StyledButton>
+          <StyledButton color={theme.color.blue} onClick={handleImgSubmit}>
+            {t('page:MainButton.result')}
           </StyledButton>
         </>
       ) : null}
@@ -150,18 +150,19 @@ const Img = styled.img`
   border-radius: 7px;
   background: lightgrey;
 `;
-const StyledButton = styled.div`
+const StyledButton = styled.div<{ color: string}>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 40%;
   border-radius: 20px;
   cursor: pointer;
-  height: 30px;
+  height: 40px;
   border: 1px solid lightgrey;
-  background: ${theme.color.white};
-  color: black;
-  font-size: 13px;
+  background: ${(props) => props.color};
+  color: ${(props) => props.color === 'white' ? 'black' : 'white' };
+  font-size: 15px;
+  font-weight: bold;
   &:hover {
     background: #d0cfd1;
     color: black;
