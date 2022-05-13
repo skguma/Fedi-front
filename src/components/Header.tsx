@@ -4,6 +4,7 @@ import { theme, flexCenter } from '../style/theme';
 import { useNavigate } from 'react-router-dom';
 import Switch from '@mui/material/Switch';
 import i18n from 'i18next';
+import Logo from '../img/logo.png';
 
 const Header = () => {
   const KOREAN = 'ko';
@@ -23,7 +24,7 @@ const Header = () => {
     <HeaderWrapper>
       <div className="blank" />
       <div className="logo" onClick={() => navigate('/')}>
-        <img className="logo-img" src="./img/logo.png" />
+        <img className="logo-img" src={Logo} />
       </div>
       <Translate className="translate">
         <div>Translate</div>
