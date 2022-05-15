@@ -44,8 +44,10 @@ const SkeletonWrapper = styled.div`
     flex-direction: row;
   }
 `;
+
 const Wrapper = styled.div`
   display: grid;
+  padding-bottom: 100px;
   ${device.mobile} {
     justify-content: center;
     align-items: center;

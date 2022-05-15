@@ -1,11 +1,12 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { theme, flexCenter } from '../style/theme';
+import { device, size, theme, flexCenter } from '../style/theme';
 import { useTranslation } from 'react-i18next';
 import Webcam from 'react-webcam';
 import CameraIcon from '@mui/icons-material/Camera';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+
 type CameraInputProps = {
   onUpload: (file:any) => void;
   onRemove: () => void;
@@ -14,12 +15,11 @@ type CameraInputProps = {
 const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
   const [imageSrc, setImageSrc] = useState<string | null>();
   const [webcamOpen, setWebcamOpen] = useState<boolean>(false);
-  const webcamRef = useRef(null);
   const [file, setFile] = useState<File>();
   const [isCapture, setIsCapture] = useState<boolean>(false);
-  const navigate = useNavigate();
-
   const { t } = useTranslation(['page']);
+  const webcamRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleWebcamOpen = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -35,6 +35,7 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
     onUpload(file);
     navigate('/result');
   };
+
   const videoConstraints = {
     width: 1280,
     height: 720,
@@ -74,8 +75,8 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
       {webcamOpen && isCapture === false ? (
         <>
         <Webcam
-          width={1280}
-          height={720}
+          width={540}
+          height={360}
           ref={webcamRef}
           className="web-cam"
           audio={false}
@@ -117,13 +118,20 @@ const CameraWrapper = styled.div`
   .web-cam {
     border: 0;
     outline: 0;
+    ${device.mobile}{
+      height: 40%;
+      width: 50%;
+    }
+    ${device.tablet}{
+      width: 400px;
+      height: 250px;
+    }
+    height: 40%;
+    width: 50%;
     background-color: black;
     border: 1px solid lightgrey;
-    height: 50%;
-    width: 50%;
     box-shadow: 5px 5px 20px lightgrey;
     border-radius: 7px;
-    cursor: pointer;
   }
 `;
 
@@ -132,8 +140,8 @@ const CameraButton = styled.div`
   outline: 0;
   background-color: white;
   border: 1px solid lightgrey;
-  width: 30%;
-  height: 20%;
+  width:  200px;
+  height: 100px;
   ${flexCenter}
   box-shadow: 5px 5px 20px lightgrey;
   border-radius: 7px;
@@ -144,8 +152,14 @@ const CameraButton = styled.div`
 `;
 
 const Img = styled.img`
-  width: 50%;
-  height: 50%;
+${device.mobile}{
+  width: 240px;
+  height: 150px;
+}
+${device.tablet}{
+  width: 350px;
+  height: 200px;
+}
   cursor: pointer;
   box-shadow: 5px 5px 20px lightgrey;
   border-radius: 7px;
@@ -155,7 +169,12 @@ const StyledButton = styled.div<{ color: string}>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  ${device.mobile}{
+    width: 200px;
+  }
+  ${device.tablet}{
+    width: 300px;
+  }
   border-radius: 20px;
   cursor: pointer;
   height: 40px;

@@ -34,7 +34,7 @@ const RetryButton = styled.div<{color: string}>`
 display: flex;
 justify-content: center;
 align-items: center;
-width: 25%;
+width: 150px;
 border-radius: 20px;
 cursor: pointer;
 font-weight: bold;
@@ -52,7 +52,7 @@ const StyledButton = styled.div<{color: string}>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35%;
+  width: 230px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;

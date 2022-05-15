@@ -36,6 +36,5 @@ const Wrapper = styled.div`
   }
   ${device.tablet} {
     ${WrapperWithHeader};
-    width: ${size.tablet};
   }
 `;

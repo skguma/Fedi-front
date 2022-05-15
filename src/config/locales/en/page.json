@@ -5,12 +5,12 @@
         "subtitle2" : "The more you show your face to the front, the more accurate it is"
     },
     "Footer": {
-        "center": "digital crime offender support center",
-        "shortcut": "shortcut"
+        "center": "Digital crime offender support center",
+        "shortcut": "Shortcut"
     },
     "MainButton":{
-        "result":"show result",
-        "delete": "taking a photo again"
+        "result":"Show result",
+        "delete": "Taking a photo again"
     },
     "research" : "Retry",
     "ResultPage": {

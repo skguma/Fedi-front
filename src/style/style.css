@@ -17,7 +17,7 @@ body {
   @media screen and (max-width: 600px) {
     width: 100%;
   }
-  @media screen  (min-width: 600px) and (max-width: 1500px) {
+  @media screen (min-width: 600px) and (max-width: 1500px) {
     width: 600px;
   }
 }

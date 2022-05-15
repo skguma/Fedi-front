@@ -38,7 +38,8 @@ const Translate = styled.div`
   align-items: center;
   font-weight: bold;
   display: flex;
-  justify-content; row;
+  margin-right: 10px;
+  justify-content: flex-end;
 
 `;
 
