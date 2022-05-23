@@ -42,7 +42,6 @@ function ResultCard({
   const handleClick = (e: any) => {
     e.preventDefault();
     const tweetId = e.target.id;
-    console.log('tweetId', tweetId);
     clicked
       ? onUnselect(parseInt(tweetId, 10))
       : onSelect(parseInt(tweetId, 10));
@@ -59,7 +58,6 @@ function ResultCard({
     const config = { headers: { 'Content-Type': 'application/json' } };
     await axios
       .patch(`http://15.165.149.176:8080/tweets/${tweetId}/suspend`, config)
-      .then((res) => console.log(res.data));
   };
 
   useEffect(() => modifyEyesLocation(), []);
@@ -85,7 +83,7 @@ function ResultCard({
       </Fab>
       {isSuspend ? <SuspendAccountBlock>🚨<br/>{t('page:ResultPage.suspend')}</SuspendAccountBlock>: ''}
       <Thumbnail id={tweetId} onClick={handleClick} isSuspend>
-        <Img className="image" id={tweetId} src={imageUrl} />
+        <Img className="image" id={tweetId} src={imageUrl} alt="result-image"/>
         <EyeBox margin={eyesLocation} id={tweetId} />
         {clicked ? <Overlay id={tweetId} /> : ''}
       </Thumbnail>
