@@ -37,8 +37,10 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
   };
 
   const videoConstraints = {
-    width: 1280,
-    height: 720,
+    video: {
+      width: { min: 1024, ideal: 1280, max: 1920 },
+      height: { min: 776, ideal: 720, max: 1080 }
+    },
     facingMode: 'user',
   };
 
@@ -75,8 +77,8 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
       {webcamOpen && isCapture === false ? (
         <>
         <Webcam
-          width={540}
-          height={360}
+          width={1280}
+          height={720}
           ref={webcamRef}
           className="web-cam"
           audio={false}
@@ -153,12 +155,12 @@ const CameraButton = styled.div`
 
 const Img = styled.img`
 ${device.mobile}{
-  width: 240px;
-  height: 150px;
+  width: 230px;
+  height: 160px;
 }
 ${device.tablet}{
-  width: 350px;
-  height: 200px;
+  width: 340px;
+  height: 240px;
 }
   cursor: pointer;
   box-shadow: 5px 5px 20px lightgrey;
