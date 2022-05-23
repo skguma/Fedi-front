@@ -78,7 +78,7 @@ export default React.memo(EmailBox);
 
 const Wrapper = styled.div`
   margin-top: 10px;
-  height: 300x;
+  height: 500x;
   padding-bottom: 50px;
   flex-direction: column;
   justify-content: space-between;
@@ -106,7 +106,7 @@ const StyledButton = styled.button<{ isActive: boolean }>`
 
 const InputWrapper = styled.div`
   width: 310px;
-  height: 100%;
+  height: 200px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;

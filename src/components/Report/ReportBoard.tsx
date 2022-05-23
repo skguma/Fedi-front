@@ -59,7 +59,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 300px;
+  height: 330px;
   width: inherit%;
   background-color: ${theme.color.bgColor};
 `;

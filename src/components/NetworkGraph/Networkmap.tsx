@@ -28,6 +28,6 @@ const PageMoveWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 300px;
+  height: 350px;
   width: 100%;
 `;
