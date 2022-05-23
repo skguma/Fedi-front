@@ -91,11 +91,11 @@ const CameraInput = ({ onUpload, onRemove }: CameraInputProps) => {
       {webcamOpen === false && isCapture === true ? (
         <>
           <Img alt="upload" src={imageSrc} />
-          <StyledButton color="white" onClick={handleImgRemove}>
-            {t('page:MainButton.delete')}
-          </StyledButton>
           <StyledButton color={theme.color.blue} onClick={handleImgSubmit}>
             {t('page:MainButton.result')}
+          </StyledButton>
+          <StyledButton color="white" onClick={handleImgRemove}>
+            {t('page:MainButton.delete')}
           </StyledButton>
         </>
       ) : null}
