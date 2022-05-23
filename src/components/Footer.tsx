@@ -26,7 +26,7 @@ const FooterWrapper = styled.div`
   ${flexCenter}
   bottom: 0;
   flex-direction: column;
-  height: 180px;
+  height: 200px;
   width: 100%;
   background-color: #CED9EA;
 `;
@@ -35,7 +35,7 @@ const Contact = styled.div`
   align-self: flex-start;
   color: grey;
   width: 90%;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 20px;
   padding-bottom: 30px;
   box-sizing: border-box;
@@ -43,22 +43,22 @@ const Contact = styled.div`
 `;
 
 const Message = styled.div`
-  font-size: 12px;
+  font-size: 15px;
   color: grey;
 `;
 
 const Button = styled.button`
-  border: 1px solid white;
+  border: 1px solid black;
   border-radius: 5px;
-  width: 250px;
+  width: 270px;
   cursor: pointer;
   background-color: white;
   color: black;
-  height: 80px;
+  height: 95px;
   font-weight: bold;
   padding: 15px;
-  margin-top: 35px;
-  font-size: 15px;
+  margin-top: 30px;
+  font-size: 17px;
   &:hover {
     background: #d0cfd1;
     border: 1px solid #d0cfd1;

@@ -29,7 +29,7 @@ const DescriptionWrapper = styled.div`
   ${flexCenter}
   flex-direction: column;
   padding-top: 30px;
-  height: 200px;
+  height: 300px;
   width: 100%;
   font-weight: bold;
   color: ${theme.color.blue};
@@ -37,12 +37,12 @@ const DescriptionWrapper = styled.div`
   h1 {
     text-align: center;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 20px;
     color: ${theme.color.black};
   }
   h2 {
     text-align: center;
-    font-size: 14px;
+    font-size: 17px;
     color: ${theme.color.grey};
   }
 `;
