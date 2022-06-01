@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Description from '../components/Description';
 import ResultContainer from '../containers/ResultContainer';
 import Footer from '../components/Footer';
-import { device, size, WrapperWithHeader } from '../style/theme';
+import { device, WrapperWithHeader } from '../style/theme';
 import { useTranslation } from 'react-i18next';
 
 const ResultPage = () => {

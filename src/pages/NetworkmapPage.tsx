@@ -5,7 +5,7 @@ import Description from '../components/Description';
 import NetworkmapContainer from '../containers/NetworkmapContainer';
 import Footer from '../components/Footer';
 import { useTranslation } from 'react-i18next';
-import { device, size, WrapperWithHeader } from '../style/theme';
+import { device, WrapperWithHeader } from '../style/theme';
 
 const NetworkmapPage = () => {
   const { t } = useTranslation(['page']);

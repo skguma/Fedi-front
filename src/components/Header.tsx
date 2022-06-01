@@ -9,8 +9,8 @@ import Logo from '../img/logo.png';
 const Header = () => {
   const KOREAN = 'ko';
   const ENGLISH = 'en';
-  const [language, setLanguage] = useState('en');
-  const onChangeLang = () => {
+  const [language, setLanguage] = useState(KOREAN);
+  const onChangeLanguage = () => {
     if (language === KOREAN) {
       i18n.changeLanguage(ENGLISH);
       setLanguage(ENGLISH);
@@ -28,7 +28,7 @@ const Header = () => {
       </div>
       <Translate className="translate">
         <div>Translate</div>
-        <Switch onClick={onChangeLang} defaultChecked />
+        <Switch onClick={onChangeLanguage} defaultChecked />
       </Translate>
     </HeaderWrapper>
   );

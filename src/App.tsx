@@ -1,12 +1,12 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './style/theme';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import ResultPage from './pages/ResultPage';
 import ReportPage from './pages/ReportPage';
 import NetworkmapPage from './pages/NetworkmapPage';
 import ScrollToTop from './components/ScrollToTop';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './style/theme';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (

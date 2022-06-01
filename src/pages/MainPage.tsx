@@ -5,7 +5,7 @@ import Description from '../components/Description';
 import ImageContainer from '../containers/ImageContainer';
 import Footer from '../components/Footer';
 import { useTranslation } from 'react-i18next';
-import { device, size, WrapperWithHeader } from '../style/theme';
+import { device, WrapperWithHeader } from '../style/theme';
 
 const MainPage = () => {
   const { t } = useTranslation(['page']);

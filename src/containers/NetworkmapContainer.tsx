@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Networkmap from '../components/NetworkGraph/Networkmap';
 import axios from 'axios';
 import { useParams } from "react-router";
+
 function NetworkmapContainer() {
   const [data, setData] = useState();
-  
   const { tweetId } = useParams();
-  console.log(tweetId);
 
   useEffect(() => {
     async function get() {

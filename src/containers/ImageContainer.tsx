@@ -1,7 +1,7 @@
 import React from 'react';
+import CameraInput from '../components/CameraInput';
 import { useDispatch } from 'react-redux';
 import { upload, remove } from '../modules/images';
-import CameraInput from '../components/CameraInput';
 
 function ImageContainer() {
   const dispatch = useDispatch();
