@@ -177,7 +177,7 @@ const EyeBox = styled.div<{ margin: string }>`
   margin-top: ${(props) => props.margin}px;
   position: absolute;
   width: 70%;
-  height: 15%;
+  height: 20%;
   background-color: black;
 `;
 
