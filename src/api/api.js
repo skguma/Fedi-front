@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const API = axios.create({
-  baseURL: 'http://15.165.149.176:8080',
+  baseURL: 'https://api.fedi.link',
   headers: {
     'Content-Type': 'application/json',
   },

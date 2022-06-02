@@ -13,14 +13,10 @@ function NetworkmapContainer() {
         headers: { 'Content-Type': 'application/json' },
       };
       const getNetworkData = await axios
-        .get(`http://15.165.149.176:8080/retweets/${tweetId}`, config)
+        .get(`https://api.fedi.link/retweets/${tweetId}`, config)
         .then((res) => {
-          console.log(res.data);
           setData(res.data);
         })
-        .catch((error) => {
-          console.log(error.response);
-        });
     }
     get();
   }, []);

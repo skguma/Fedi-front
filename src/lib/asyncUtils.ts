@@ -1,4 +1,4 @@
-export const createPromiseThunk = (type, promiseCreator) => {
+export const createPromiseThunk = (type, promiseCreator) => { 
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
   return (param) => async (dispatch) => {
     dispatch({ type, param });
@@ -35,7 +35,6 @@ export const reducerUtils = {
   }),
 };
 
-// type: 액션의 타입, key: 상태의 key(ex. posts, post)
 export const handleAsyncActions = (type, key) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
 

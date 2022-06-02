@@ -21,18 +21,12 @@ function ReportContainer() {
       const config = {
         headers: { 'Content-Type': 'application/json' },
       };
-
-      // https://38fa5e0d-5b04-4db0-bb06-d41907bb60ac.mock.pstmn.io
-      // http://15.165.149.176:8080/tweets/${imageId}/accountInfo
       const imageId = sendTweetId.join();
       const getNetworkData = await axios
-        .get(`http://15.165.149.176:8080/tweets/${imageId}/accountInfo`, config)
+        .get(`https://api.fedi.link/tweets/${imageId}/accountInfo`, config)
         .then((res) => {
           setAccountName(res.data.name);
         })
-        .catch((error) => {
-          console.log(error.response);
-        });
     }
     get();
   }, []);

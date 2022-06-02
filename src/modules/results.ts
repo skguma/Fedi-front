@@ -10,8 +10,8 @@ const GET_RESULTS_SUCCESS = 'GET_RESULTS_SUCCESS';
 const GET_RESULTS_ERROR = 'GET_RESULTS_ERROR';
 
 export const getResults = createPromiseThunk(
-  GET_RESULTS,
-  resultsAPI.getResults
+  GET_RESULTS, // 액션 타입, 액션 객체를 리턴하는게 아니라, 함수를 생성하는 액션 생성함수 작성함
+  resultsAPI.getResults // payload, 보통 여기서 api 요청함
 );
 
 const initialState = {

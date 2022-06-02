@@ -22,8 +22,9 @@ const EmailBox = ({ tweetId,  onClear }) => {
       email: values.email,
       imageId: tweetId,
     };
+    console.log(data);
     await axios
-      .post('http://15.165.149.176:8080/networks', data, {
+      .post('https://api.fedi.link/networks', data, {
         headers: { 'Content-Type': 'application/json' },
       })
   };

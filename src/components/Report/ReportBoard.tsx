@@ -29,7 +29,6 @@ const stringAvatar = (name) => {
 }
 
 const ReportBoard = ({ onClear, tweetId, accountName }) => {
-  accountName.map((account) => console.log(account));
   return (
     <Wrapper>
       <ReportAccount>

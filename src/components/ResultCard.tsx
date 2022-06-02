@@ -57,7 +57,7 @@ function ResultCard({
     alert(t('page:ResultPage.suspendAccountReport'));
     const config = { headers: { 'Content-Type': 'application/json' } };
     await axios
-      .patch(`http://15.165.149.176:8080/tweets/${tweetId}/suspend`, config)
+      .patch(`https://api.fedi.link/tweets/${tweetId}/suspend`, config)
   };
 
   useEffect(() => modifyEyesLocation(), []);
