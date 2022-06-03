@@ -18,7 +18,7 @@
         "subtitle1": "Please check the original tweet and select only your photos.",
         "subtitle2" : "If the original tweet is deleted or is a suspended account, please click Delete button",
         "tweet" : "tweet",
-        "suspend" : "Receipt of suspended account report",
+        "suspend" : "A suspend account report has been received",
         "suspendAccountReport": "Suspended account report has been completed"
     },
     "NetworkmapPage" : {

@@ -83,7 +83,7 @@ function ResultCard({
       </Fab>
       {isSuspend ? <SuspendAccountBlock>🚨<br/>{t('page:ResultPage.suspend')}</SuspendAccountBlock>: ''}
       <Thumbnail id={tweetId} onClick={handleClick} isSuspend>
-        <Img className="image" id={tweetId} src={imageUrl} alt="result-image"/>
+        <Img id={tweetId} src={imageUrl} alt="result-image"/>
         <EyeBox margin={eyesLocation} id={tweetId} />
         {clicked ? <Overlay id={tweetId} /> : ''}
       </Thumbnail>
@@ -126,7 +126,7 @@ const Wrapper = styled.div`
 `;
 
 const SuspendAccountBlock = styled.div`
-  height: 100%;
+  height: 220px;
   position: absolute;
   width: 100%;
   display: flex;
@@ -162,6 +162,7 @@ const Img = styled.img`
   position: relative;
   border-radius: 7px;
 `;
+
 const Overlay = styled.div`
   height: 100%;
   position: absolute;
