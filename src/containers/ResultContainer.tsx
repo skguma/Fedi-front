@@ -35,8 +35,7 @@ function ResultContainer() {
     dispatch(suspends(suspendTweetId));
 
   if (loading) return <SkeletonUi />;
-  if (error) return <div>에러 발생!</div>;
-  if (!data || data.length ===0) return <EmptyResult/>;
+  if (error || !data || data.length ===0) return <EmptyResult/>;
   
   else return (
     <>
